@@ -1,6 +1,6 @@
 package com.shrooms.scaffold.repository.user;
 
-import com.shrooms.scaffold.model.user.User;
+import com.shrooms.scaffold.model.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package com.shrooms.scaffold.model.order;
+package com.shrooms.scaffold.model.entity.order;
 
-import com.shrooms.scaffold.model.scaffold.Scaffold;
-import com.shrooms.scaffold.model.user.User;
+import com.shrooms.scaffold.model.entity.scaffold.Scaffold;
+import com.shrooms.scaffold.model.entity.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package com.shrooms.scaffold.model.scaffold;
+package com.shrooms.scaffold.model.entity.scaffold;
 
 public enum ScaffoldCategory {
     FACADE,

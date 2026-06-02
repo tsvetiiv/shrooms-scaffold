@@ -1,7 +1,7 @@
-package com.shrooms.scaffold.model.customrequest;
+package com.shrooms.scaffold.model.entity.customrequest;
 
 
-import com.shrooms.scaffold.model.user.User;
+import com.shrooms.scaffold.model.entity.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 

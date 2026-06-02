@@ -1,8 +1,7 @@
-package com.shrooms.scaffold.model.user;
+package com.shrooms.scaffold.model.entity.user;
 
-import com.shrooms.scaffold.model.order.Order;
+import com.shrooms.scaffold.model.entity.order.Order;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.List;

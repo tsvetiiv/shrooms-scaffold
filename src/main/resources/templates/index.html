@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shrooms Scaffold</title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">Shrooms</div>
+
+    <nav class="nav">
+        <a href="/login">Login</a>
+        <a href="/register" class="register-btn">Register</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Shrooms Scaffold</h1>
+    <p>
+        Professional scaffold solutions for rent, purchase and custom construction projects.
+    </p>
+</section>
+
+<section class="services">
+
+    <a class="service-card"
+       th:each="scaffold : ${scaffolds}"
+       th:href="@{/scaffolds/{id}(id=${scaffold.id})}">
+
+        <img th:src="${scaffold.imageUrl}" alt="Scaffold image">
+
+        <h2 th:text="${scaffold.name}">Scaffold name</h2>
+
+        <p>
+            Rent:
+            <span th:text="${scaffold.priceForRent}">0</span> €
+        </p>
+
+        <p>
+            Buy:
+            <span th:text="${scaffold.priceForSale}">0</span> €
+        </p>
+    </a>
+
+    <a href="/custom-request" class="service-card">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Custom scaffold">
+        <h2>Custom Scaffold</h2>
+        <p>Request a custom scaffold solution.</p>
+    </a>
+
+</section>
+
+</body>
+</html>

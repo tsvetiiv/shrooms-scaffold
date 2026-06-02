@@ -1,6 +1,6 @@
 package com.shrooms.scaffold.repository.order;
 
-import com.shrooms.scaffold.model.order.Order;
+import com.shrooms.scaffold.model.entity.order.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

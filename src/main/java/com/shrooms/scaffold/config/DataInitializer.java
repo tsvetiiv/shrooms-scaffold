@@ -1,10 +1,10 @@
 package com.shrooms.scaffold.config;
 
-import com.shrooms.scaffold.model.scaffold.MaterialType;
-import com.shrooms.scaffold.model.scaffold.Scaffold;
-import com.shrooms.scaffold.model.scaffold.ScaffoldCategory;
-import com.shrooms.scaffold.model.user.RoleType;
-import com.shrooms.scaffold.model.user.User;
+import com.shrooms.scaffold.model.entity.scaffold.MaterialType;
+import com.shrooms.scaffold.model.entity.scaffold.Scaffold;
+import com.shrooms.scaffold.model.entity.scaffold.ScaffoldCategory;
+import com.shrooms.scaffold.model.entity.user.RoleType;
+import com.shrooms.scaffold.model.entity.user.User;
 import com.shrooms.scaffold.repository.scaffold.ScaffoldRepository;
 import com.shrooms.scaffold.repository.user.UserRepository;
 import org.springframework.boot.CommandLineRunner;

@@ -1,6 +1,6 @@
 package com.shrooms.scaffold.repository.customRequest;
 
-import com.shrooms.scaffold.model.customrequest.CustomRequest;
+import com.shrooms.scaffold.model.entity.customrequest.CustomRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
