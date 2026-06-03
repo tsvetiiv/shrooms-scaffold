@@ -2,6 +2,7 @@ package com.shrooms.scaffold.service.user;
 
 import com.shrooms.scaffold.mapper.user.UserMapper;
 import com.shrooms.scaffold.model.dto.user.UserDto;
+import com.shrooms.scaffold.model.dto.user.UserLoginRequest;
 import com.shrooms.scaffold.model.dto.user.UserRegisterRequest;
 import com.shrooms.scaffold.model.entity.user.User;
 import com.shrooms.scaffold.repository.user.UserRepository;
@@ -9,7 +10,7 @@ import com.shrooms.scaffold.repository.user.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
+import java.util.Optional;
 
 
 @Service
@@ -41,6 +42,20 @@ public class UserService {
 
         return UserMapper.toUserDto(savedUser);
 
+    }
+
+    public UserDto login(UserLoginRequest userLoginRequest) {
+        Optional<User> optionalUser =
+                userRepository.findByUsername(userLoginRequest.getUsername());
+
+        if (optionalUser.isEmpty()){
+            throw new RuntimeException("Username not found");
+        }
+        User user = optionalUser.get();
+        if (!passwordEncoder.matches(userLoginRequest.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid username or password");
+        }
+        return UserMapper.toUserDto(user);
     }
 
 }

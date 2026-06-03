@@ -66,7 +66,7 @@ public class DataInitializer implements CommandLineRunner {
                     .scaffoldCategory(ScaffoldCategory.FACADE)
                     .priceForRent(new BigDecimal("120.00"))
                     .priceForSale(new BigDecimal("2800.00"))
-                    .imageUrl("https://storage.googleapis.com/desteigerconcurrent_public/thumbnail/60/3b/d4/1762251522/asc-gevelsteiger-40m2_1920x1920.png")
+                    .imageUrl("/images/facade.png")
                     .available(true)
                     .build();
 

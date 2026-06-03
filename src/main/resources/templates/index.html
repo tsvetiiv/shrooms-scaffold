@@ -8,49 +8,82 @@
 <body>
 
 <header class="header">
-    <div class="logo">Shrooms</div>
+    <a href="/" class="brand">
+        <img src="/images/skull-logo.png" alt="Shrooms logo">
+        <div>
+            <div class="brand-title">SHROOMS</div>
+            <div class="brand-subtitle">SCAFFOLD SOLUTIONS</div>
+        </div>
+    </a>
 
     <nav class="nav">
-        <a href="/login">Login</a>
+        <a href="/">Home</a>
+        <a href="/scaffolds">Our Work</a>
+        <a href="/login" class="login-btn">Login</a>
         <a href="/register" class="register-btn">Register</a>
     </nav>
 </header>
 
 <section class="hero">
-    <h1>Shrooms Scaffold</h1>
-    <p>
-        Professional scaffold solutions for rent, purchase and custom construction projects.
-    </p>
+    <h1>SHROOMS SCAFFOLD</h1>
+    <div class="red-line"></div>
+    <p>Professional scaffold solutions for rent, purchase and custom construction projects.</p>
 </section>
-
 <section class="services">
 
-    <a class="service-card"
-       th:each="scaffold : ${scaffolds}"
-       th:href="@{/scaffolds/{id}(id=${scaffold.id})}">
+    <a href="/scaffolds/rent" class="service-card">
 
-        <img th:src="${scaffold.imageUrl}" alt="Scaffold image">
+        <img src="/images/rentCard.png" alt="Rent scaffold">
 
-        <h2 th:text="${scaffold.name}">Scaffold name</h2>
+        <h2>Rent Scaffold</h2>
 
-        <p>
-            Rent:
-            <span th:text="${scaffold.priceForRent}">0</span> €
-        </p>
+        <div class="card-line"></div>
 
         <p>
-            Buy:
-            <span th:text="${scaffold.priceForSale}">0</span> €
+            Professional scaffold systems for temporary construction,
+            renovation and industrial projects.
         </p>
+
+        <button type="button">
+            VIEW RENT OPTIONS
+        </button>
+    </a>
+
+    <a href="/scaffolds/buy" class="service-card">
+
+        <img src="/images/buyCard.png" alt="Buy scaffold">
+
+        <h2>Buy Scaffold</h2>
+
+        <div class="card-line"></div>
+
+        <p>
+            Purchase durable scaffold systems for long-term
+            commercial and private use.
+        </p>
+
+        <button type="button">
+            VIEW PRODUCTS
+        </button>
     </a>
 
     <a href="/custom-request" class="service-card">
+
         <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e" alt="Custom scaffold">
+
         <h2>Custom Scaffold</h2>
-        <p>Request a custom scaffold solution.</p>
+
+        <div class="card-line"></div>
+
+        <p>
+            Request fully customized scaffold solutions
+            tailored to your project requirements.
+        </p>
+
+        <button type="button">
+            REQUEST A QUOTE
+        </button>
     </a>
-
 </section>
-
 </body>
 </html>

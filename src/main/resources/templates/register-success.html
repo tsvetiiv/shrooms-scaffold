@@ -3,23 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>Registration Successful</title>
-  <link rel="stylesheet" href="/css/register.css">
+  <link rel="stylesheet" href="/css/register-success.css">
 </head>
 <body>
 
 <header class="header">
-  <a href="/" class="logo">Shrooms</a>
+
+  <a href="/" class="logo">
+    <img src="/images/skull-logo.png" alt="Shrooms logo">
+
+    <div class="logo-text">
+      <div class="logo-title">SHROOMS</div>
+      <div class="logo-subtitle">SCAFFOLD SOLUTIONS</div>
+    </div>
+  </a>
+
+  <nav class="nav">
+    <a href="/">Home</a>
+    <a href="/scaffolds">Our Work</a>
+    <a href="/login" class="login-btn">Login</a>
+  </nav>
+
 </header>
 
-<main class="register-page">
-  <section class="register-card">
-    <h1>Registration successful!</h1>
-    <p>Your account has been created successfully.</p>
+<main class="success-page">
 
-    <a href="/login">
-      <button type="button">Go to Login</button>
+  <section class="success-card">
+
+    <div class="checkmark">✓</div>
+
+    <h1>Registration Successful</h1>
+
+    <div class="red-line"></div>
+
+    <p>
+      Your account has been successfully created.
+      You can now login and access Shrooms Scaffold services.
+    </p>
+
+    <a href="/login" class="success-btn">
+      GO TO LOGIN
     </a>
+
   </section>
+
 </main>
 
 </body>
