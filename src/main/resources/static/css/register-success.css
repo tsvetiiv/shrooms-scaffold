@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #1f3c4d;
+
+    background-image: url('/images/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.header {
+    height: 75px;
+    padding: 0 55px;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.92);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+    color: #168aad;
+    text-decoration: none;
+}
+
+.success-page {
+    min-height: calc(100vh - 75px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.success-card {
+    width: 430px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.success-card h1 {
+    color: #168aad;
+    margin-bottom: 18px;
+    font-size: 34px;
+}
+
+.success-card p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.login-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #168aad;
+    color: white;
+    text-decoration: none;
+    border-radius: 28px;
+    font-size: 17px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.login-btn:hover {
+    background: #126f8c;
+    transform: translateY(-2px);
+}
