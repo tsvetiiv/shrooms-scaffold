@@ -3,6 +3,7 @@ package com.shrooms.scaffold.web;
 import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.model.dto.user.UserLoginRequest;
 import com.shrooms.scaffold.service.user.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,12 +31,16 @@ public class LoginController {
         return modelAndView;
     }
     @PostMapping("/login")
-    public ModelAndView login(@ModelAttribute UserLoginRequest userLoginRequest) {
+    public ModelAndView login(@ModelAttribute UserLoginRequest userLoginRequest,
+                              HttpSession session) {
 
         try {
-            userService.login(userLoginRequest);
 
-            return new ModelAndView("redirect:/");
+            UserDto user = userService.login(userLoginRequest);
+
+            session.setAttribute("user", user);
+
+            return new ModelAndView("redirect:/users/profile");
 
         } catch (RuntimeException exception) {
 
