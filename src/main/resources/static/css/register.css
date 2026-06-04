@@ -221,3 +221,36 @@ button:hover {
     text-align: center;
     font-weight: bold;
 }
+
+.footer {
+    height: 90px;
+
+    background: rgba(5, 5, 5, 0.82);
+
+    border-top: 1px solid rgba(214,31,31,0.4);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 40px;
+}
+
+.footer-logo {
+    width: 55px;
+    height: 55px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+}
+
+.copyright,
+.powered {
+    color: #cfcfcf;
+    font-size: 13px;
+}
+
+.powered {
+    color: #d61f1f;
+}
