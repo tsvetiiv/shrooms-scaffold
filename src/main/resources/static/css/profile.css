@@ -1,0 +1,203 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #f5f5f5;
+
+    background:
+            linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.88)),
+            url('/images/windmill.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.header {
+    height: 95px;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(5, 5, 5, 0.78);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.logo-title {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #f2f2f2;
+}
+
+.logo-subtitle {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    color: #d61f1f;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav a {
+    color: #f5f5f5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav a:hover {
+    color: #e32626;
+}
+
+.logout-btn {
+    padding: 14px 28px;
+    border-radius: 7px;
+    background: #c71919;
+    color: white !important;
+}
+
+.profile-page {
+    min-height: calc(100vh - 185px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 55px 20px;
+}
+
+.profile-card {
+    width: 520px;
+    background: rgba(8, 10, 10, 0.92);
+    padding: 45px;
+    border-radius: 14px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.75);
+}
+
+.profile-image {
+    width: 115px;
+    height: 115px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #d61f1f;
+    margin-bottom: 22px;
+}
+
+.profile-card h1 {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.red-line {
+    width: 90px;
+    height: 5px;
+    background: #d61f1f;
+    margin: 24px auto;
+    border-radius: 8px;
+}
+
+.profile-info {
+    text-align: left;
+    margin-top: 25px;
+}
+
+.profile-info p {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 13px 0;
+    margin: 0;
+
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #dddddd;
+}
+
+.profile-info span {
+    color: #aaaaaa;
+}
+
+.profile-info strong {
+    color: white;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.profile-btn {
+    padding: 13px 24px;
+    border-radius: 7px;
+    background: #c71919;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.profile-btn:hover {
+    background: #e32626;
+}
+
+.profile-btn.secondary {
+    background: transparent;
+    border: 1px solid #d61f1f;
+}
+
+.profile-btn.secondary:hover {
+    background: #d61f1f;
+}
+
+.footer {
+    height: 90px;
+    background: rgba(5, 5, 5, 0.82);
+    border-top: 1px solid rgba(214,31,31,0.4);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 40px;
+}
+
+.footer-logo {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.copyright,
+.powered {
+    color: #cfcfcf;
+    font-size: 13px;
+}
+
+.powered {
+    color: #d61f1f;
+}
