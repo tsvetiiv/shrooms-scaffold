@@ -16,12 +16,14 @@ public class ScaffoldService {
     public ScaffoldService(ScaffoldRepository scaffoldRepository) {
         this.scaffoldRepository = scaffoldRepository;
     }
+    public Scaffold findById(UUID id) {
+        return scaffoldRepository.findById(id)
+                .orElseThrow();
+    }
 
     public List<Scaffold> findAll() {
         return scaffoldRepository.findAll();
     }
 
-    public Optional<Scaffold> findById(UUID id) {
-        return scaffoldRepository.findById(id);
-    }
+
 }
