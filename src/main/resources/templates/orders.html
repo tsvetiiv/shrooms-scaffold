@@ -1,13 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My Orders | Shrooms</title>
+    <link rel="stylesheet" href="/css/orders.css">
 </head>
 <body>
-<h1>My Orders</h1>
 
-<p>No orders found.</p>
+<header class="header">
+    <a href="@{/}"  class="logo">
+        <img src="/images/skull-logo.png" alt="Shrooms logo">
+
+        <div class="logo-text">
+            <div class="logo-title">SHROOMS</div>
+            <div class="logo-subtitle">SCAFFOLD SOLUTIONS</div>
+        </div>
+    </a>
+
+    <nav class="nav">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/our-work}">Our Work</a>
+        <a th:href="@{/orders}">My Orders</a>
+        <a th:href="@{/logout}" class="logout-btn">Logout</a>
+    </nav>
+</header>
+
+<main class="orders-page">
+
+    <section class="orders-card">
+
+        <h1>My Orders</h1>
+
+        <div class="red-line"></div>
+
+        <table class="orders-table">
+
+            <thead>
+            <tr>
+                <th>Scaffold</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Created On</th>
+                <th>Total Price</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr th:if="${#lists.isEmpty(orders)}">
+                <td colspan="5">No orders yet.</td>
+            </tr>
+
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.scaffold.name}"></td>
+                <td th:text="${order.orderType}"></td>
+                <td th:text="${order.orderStatus}"></td>
+                <td th:text="${order.createdOn}"></td>
+                <td th:text="${order.totalPrice}"></td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+
+    <span class="copyright">
+        © 2026 Shrooms Scaffold Solutions
+    </span>
+
+    <img src="/images/skull-logo.png"
+         alt="Shrooms Logo"
+         class="footer-logo">
+
+    <span class="powered">
+        Powered by T. Ivanova
+    </span>
+
+</footer>
 
 </body>
 </html>

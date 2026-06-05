@@ -40,11 +40,17 @@ public class Order {
 
     private boolean installationRequired;
 
+    @Column(nullable = false)
     private String address;
 
+    @Column(nullable = false)
+    private Integer quantity;
 
+    private Integer rentalWeeks;
+    @Column(nullable = false)
     private LocalDateTime createdOn;
 
+    @Column(nullable = false)
     private BigDecimal totalPrice;
 
 
