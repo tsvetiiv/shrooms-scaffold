@@ -3,6 +3,7 @@ import com.shrooms.scaffold.model.dto.user.UserDto;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,5 +31,17 @@ public class ProfileController {
         modelAndView.addObject("user", user);
 
         return modelAndView;
+    }
+    @PostMapping("/profile/edit")
+    public String editProfile(UserDto user, HttpSession session) {
+        UserDto currentUser = (UserDto) session.getAttribute("user");
+
+        currentUser.setFirstName(user.getFirstName());
+        currentUser.setLastName(user.getLastName());
+        currentUser.setEmail(user.getEmail());
+        currentUser.setProfilePicture(user.getProfilePicture());
+        session.setAttribute("user", currentUser);
+
+        return "redirect:/users/profile";
     }
 }

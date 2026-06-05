@@ -40,7 +40,7 @@ public class LoginController {
 
             session.setAttribute("user", user);
 
-            return new ModelAndView("redirect:/users/profile");
+            return new ModelAndView("redirect:/");
 
         } catch (RuntimeException exception) {
 

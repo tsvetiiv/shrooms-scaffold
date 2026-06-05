@@ -8,7 +8,7 @@
 <body>
 
 <header class="header">
-    <a href="/" class="brand">
+    <a th:href="@{/}" class="brand">
         <img src="/images/skull-logo.png" alt="Shrooms logo">
         <div>
             <div class="brand-title">SHROOMS</div>
@@ -17,10 +17,15 @@
     </a>
 
     <nav class="nav">
-        <a href="/">Home</a>
-        <a href="/our-work">Our Work</a>
-        <a href="/login" class="login-btn">Login</a>
-        <a href="/register" class="register-btn">Register</a>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/our-work}">Our Work</a>
+
+        <a th:if="${session.user == null}" th:href="@{/login}">Login</a>
+        <a th:if="${session.user == null}" th:href="@{/register}" class="register-btn">Register</a>
+
+        <a th:if="${session.user != null}" th:href="@{/orders}">My Orders</a>
+        <a th:if="${session.user != null}" th:href="@{/users/profile}">Profile</a>
+        <a th:if="${session.user != null}" th:href="@{/logout}" class="logout-btn">Logout</a>
     </nav>
 </header>
 
@@ -31,7 +36,7 @@
 </section>
 <section class="services">
 
-    <a href="/scaffolds/rent" class="service-card">
+    <a th:href="@{/scaffolds/rent}" class="service-card">
 
         <img src="/images/rentCard.png" alt="Rent scaffold">
 
