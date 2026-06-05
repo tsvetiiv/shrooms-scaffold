@@ -1,0 +1,292 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #050505;
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.header {
+    height: 90px;
+    background: rgba(5, 5, 5, 0.82);
+    border-bottom: 1px solid rgba(214,31,31,0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+}
+
+.brand img {
+    width: 58px;
+    height: 58px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.brand-title {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.brand-subtitle {
+    color: #d61f1f;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.nav {
+    display: flex;
+    gap: 22px;
+}
+
+.nav a {
+    color: #e5e5e5;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav a:hover,
+.logout-btn {
+    color: #d61f1f;
+}
+
+
+.rent-page,
+.rent-form-page {
+    flex: 1;
+    padding: 45px 30px;
+    background:
+            linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.88)),
+            url('/images/rentCard.png') center/cover no-repeat;
+}
+
+.rent-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rent-wrapper h1,
+.rent-form-card h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 34px;
+}
+
+.red-line {
+    width: 90px;
+    height: 3px;
+    background: #d61f1f;
+    margin: 15px auto 35px;
+}
+
+.scaffold-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+.scaffold-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 720px;
+    background: rgba(10,10,10,0.92);
+    border: 1px solid rgba(214,31,31,0.35);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 0 24px rgba(0,0,0,0.45);
+}
+
+.scaffold-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background: #111;
+    padding: 12px;
+}
+
+.scaffold-content {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.scaffold-content h2 {
+    margin: 0 0 12px;
+    color: white;
+    font-size: 22px;
+}
+.scaffold-content p {
+    min-height: 180px;
+}
+.scaffold-content p,
+.selected-description {
+    color: #d5d5d5;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.scaffold-info,
+.selected-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0;
+    min-height: 90px;
+}
+
+.scaffold-info span,
+.selected-info span {
+    background: rgba(214,31,31,0.15);
+    border: 1px solid rgba(214,31,31,0.3);
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 13px;
+    color: #e8e8e8;
+}
+
+.price {
+    color: #d61f1f;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: auto;
+}
+
+.rent-btn,
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 16px;
+    background: #d61f1f;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.rent-btn:hover,
+.submit-btn:hover {
+    background: #b81818;
+}
+
+
+.rent-form-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.rent-form-card {
+    width: 100%;
+    max-width: 850px;
+    background: rgba(10,10,10,0.93);
+    border: 1px solid rgba(214,31,31,0.35);
+    border-radius: 14px;
+    padding: 35px;
+    box-shadow: 0 0 28px rgba(0,0,0,0.5);
+}
+
+.selected-scaffold-img {
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    background: #111;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 22px;
+}
+
+.selected-description {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e0e0e0;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.07);
+    color: white;
+    font-size: 15px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #d61f1f;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    color: #ddd;
+}
+
+.checkbox-row input {
+    width: 16px;
+    height: 16px;
+    accent-color: #d61f1f;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #d61f1f;
+    text-decoration: none;
+}
+
+
+.footer {
+    height: 90px;
+    background: rgba(5, 5, 5, 0.82);
+    border-top: 1px solid rgba(214,31,31,0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.footer-logo {
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.copyright,
+.powered {
+    color: #cfcfcf;
+    font-size: 13px;
+}
+
+.powered {
+    color: #d61f1f;
+}

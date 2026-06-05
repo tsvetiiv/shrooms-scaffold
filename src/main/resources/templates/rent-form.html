@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Rent Scaffold | Shrooms</title>
+  <link rel="stylesheet" th:href="@{/css/rent.css}">
+</head>
+<body>
+
+<header class="header">
+  <a th:href="@{/}" class="brand">
+    <img src="/images/skull-logo.png" alt="Shrooms logo">
+    <div>
+      <div class="brand-title">SHROOMS</div>
+      <div class="brand-subtitle">SCAFFOLD SOLUTIONS</div>
+    </div>
+  </a>
+
+  <nav class="nav">
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/our-work}">Our Work</a>
+    <a th:href="@{/orders}">My Orders</a>
+    <a th:href="@{/users/profile}">Profile</a>
+    <a th:href="@{/logout}" class="logout-btn">Logout</a>
+  </nav>
+</header>
+
+<main class="rent-form-page">
+  <section class="rent-form-card">
+
+    <h1 th:text="'Rent ' + ${scaffold.name}">Rent Scaffold</h1>
+    <div class="red-line"></div>
+
+    <img class="selected-scaffold-img"
+         th:src="${scaffold.imageUrl}"
+         th:alt="${scaffold.name}">
+
+    <p class="selected-description"
+       th:text="${scaffold.description}">
+      Scaffold description
+    </p>
+
+    <div class="selected-info">
+      <span th:text="'Height: ' + ${scaffold.height} + ' m'"></span>
+      <span th:text="'Length: ' + ${scaffold.length} + ' m'"></span>
+      <span th:text="'Width: ' + ${scaffold.width} + ' m'"></span>
+      <span th:text="'Material: ' + ${scaffold.materialType}"></span>
+      <span th:text="'Price: €' + ${scaffold.priceForRent} + ' / week'"></span>
+    </div>
+
+    <form th:action="@{/scaffolds/rent/{id}(id=${scaffold.id})}"
+          th:method="post"
+          th:object="${rentOrderRequest}">
+
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input id="quantity"
+               type="number"
+               min="1"
+               th:field="*{quantity}"
+               placeholder="Enter quantity">
+      </div>
+
+      <div class="form-group">
+        <label for="rentalWeeks">Rental Weeks</label>
+        <input id="rentalWeeks"
+               type="number"
+               min="1"
+               th:field="*{rentalWeeks}"
+               placeholder="Enter rental weeks">
+      </div>
+
+      <div class="form-group">
+        <label for="address">Delivery Address</label>
+        <input id="address"
+               type="text"
+               th:field="*{address}"
+               placeholder="Enter delivery address">
+      </div>
+
+      <label class="checkbox-row">
+        <input type="checkbox" th:field="*{installationRequired}">
+        Installation required
+      </label>
+
+      <button type="submit" class="submit-btn">
+        Submit Rent Order
+      </button>
+    </form>
+
+    <a th:href="@{/scaffolds/rent}" class="back-link">
+      Back to Rent Options
+    </a>
+
+  </section>
+</main>
+
+<footer class="footer">
+  <span class="copyright">© 2026 Shrooms Scaffold Solutions</span>
+
+  <img src="/images/skull-logo.png"
+       alt="Shrooms Logo"
+       class="footer-logo">
+
+  <span class="powered">Powered by T. Ivanova</span>
+</footer>
+
+</body>
+</html>
