@@ -64,11 +64,17 @@ body {
     font-weight: bold;
 }
 
-.login-btn {
-    padding: 13px 28px;
-    border: 1px solid rgba(255,255,255,0.7);
-    border-radius: 7px;
+.nav a:hover {
+    color: #e32626;
 }
+
+.logout-btn {
+    padding: 14px 28px;
+    border-radius: 7px;
+    background: #c71919;
+    color: white !important;
+}
+
 
 .register-btn {
     padding: 14px 28px;
