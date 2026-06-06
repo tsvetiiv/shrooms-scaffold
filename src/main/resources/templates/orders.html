@@ -8,7 +8,7 @@
 <body>
 
 <header class="header">
-    <a href="@{/}"  class="logo">
+    <a th:href="@{/}" class="logo">
         <img src="/images/skull-logo.png" alt="Shrooms logo">
 
         <div class="logo-text">
@@ -20,7 +20,7 @@
     <nav class="nav">
         <a th:href="@{/}">Home</a>
         <a th:href="@{/our-work}">Our Work</a>
-        <a th:href="@{/orders}">My Orders</a>
+        <a th:href="@{/users/profile}">Profile</a>
         <a th:href="@{/logout}" class="logout-btn">Logout</a>
     </nav>
 </header>
@@ -28,13 +28,12 @@
 <main class="orders-page">
 
     <section class="orders-card">
-
         <h1>My Orders</h1>
-
         <div class="red-line"></div>
 
-        <table class="orders-table">
+        <h2>Rent & Purchase Orders</h2>
 
+        <table class="orders-table">
             <thead>
             <tr>
                 <th>Scaffold</th>
@@ -47,22 +46,62 @@
             </thead>
 
             <tbody>
-
             <tr th:if="${#lists.isEmpty(orders)}">
-                <td colspan="5">No orders yet.</td>
+                <td colspan="6">No rent or purchase orders yet.</td>
             </tr>
 
             <tr th:each="order : ${orders}">
-                <td th:text="${order.scaffold.name}"></td>
-                <td th:text="${order.orderType}"></td>
-                <td th:text="${order.orderStatus}"></td>
-                <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}"></td>
-                <td th:text="${order.quantity}"></td>
-                <td th:text="${order.totalPrice}"></td>
+                <td th:text="${order.scaffold.name}">Scaffold</td>
+                <td th:text="${order.orderType}">Type</td>
+                <td th:text="${order.orderStatus}">Status</td>
+                <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">Created</td>
+                <td th:text="${order.quantity}">Quantity</td>
+                <td th:text="${order.totalPrice}">Price</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2 class="custom-title">Custom Requests</h2>
+
+        <table class="orders-table">
+            <thead>
+            <tr>
+                <th>Project</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Dimensions</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:if="${#lists.isEmpty(customOrders)}">
+                <td colspan="6">No custom requests yet.</td>
             </tr>
 
+            <tr th:each="customOrder : ${customOrders}">
+                <td th:text="${customOrder.projectName}">Project</td>
+                <td th:text="${customOrder.orderType}">Type</td>
+                <td th:text="${customOrder.requestStatus}">Status</td>
+                <td>
+                    <span th:text="${customOrder.height}">0</span>m ×
+                    <span th:text="${customOrder.width}">0</span>m ×
+                    <span th:text="${customOrder.length}">0</span>m
+                </td>
+                <td th:text="${customOrder.startDate}">Start</td>
+                <td th:text="${customOrder.endDate}">End</td>
+                <td>
+    <span th:if="${customOrder.estimatedPrice != null}"
+          th:text="${customOrder.estimatedPrice + ' €'}">
+    </span>
+                    <span th:if="${customOrder.estimatedPrice == null}">
+        Awaiting admin quotation
+    </span>
+                </td>
+            </tr>
             </tbody>
-
         </table>
 
     </section>
@@ -70,19 +109,13 @@
 </main>
 
 <footer class="footer">
-
-    <span class="copyright">
-        © 2026 Shrooms Scaffold Solutions
-    </span>
+    <span class="copyright">© 2026 Shrooms Scaffold Solutions</span>
 
     <img src="/images/skull-logo.png"
          alt="Shrooms Logo"
          class="footer-logo">
 
-    <span class="powered">
-        Powered by T. Ivanova
-    </span>
-
+    <span class="powered">Powered by T. Ivanova</span>
 </footer>
 
 </body>

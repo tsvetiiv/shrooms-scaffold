@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Registration Successful</title>
@@ -9,7 +9,7 @@
 
 <header class="header">
 
-  <a href="@{/}"  class="logo">
+  <a th:href="@{/}"  class="logo">
     <img src="/images/skull-logo.png" alt="Shrooms logo">
 
     <div class="logo-text">
@@ -19,9 +19,9 @@
   </a>
 
   <nav class="nav">
-    <a href="@{/}" >Home</a>
-    <a href="/scaffolds">Our Work</a>
-    <a href="/login" class="login-btn">Login</a>
+    <a th:href="@{/}" >Home</a>
+    <a th:href="@{/scaffolds}">Our Work</a>
+    <a th:href="@{/login}" class="login-btn">Login</a>
   </nav>
 
 </header>
@@ -41,7 +41,7 @@
       You can now login and access Shrooms Scaffold services.
     </p>
 
-    <a href="/login" class="success-btn">
+    <a th:href="@{/login}" class="success-btn">
       GO TO LOGIN
     </a>
 
