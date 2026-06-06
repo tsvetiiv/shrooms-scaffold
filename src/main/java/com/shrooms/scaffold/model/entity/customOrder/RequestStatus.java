@@ -1,4 +1,4 @@
-package com.shrooms.scaffold.model.entity.customrequest;
+package com.shrooms.scaffold.model.entity.customOrder;
 
 public enum RequestStatus {
     PENDING,
