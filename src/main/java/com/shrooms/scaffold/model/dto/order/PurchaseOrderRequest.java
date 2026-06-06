@@ -11,7 +11,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BuyOrderRequest {
+public class PurchaseOrderRequest {
 
     private UUID scaffoldId;
     private Integer quantity;

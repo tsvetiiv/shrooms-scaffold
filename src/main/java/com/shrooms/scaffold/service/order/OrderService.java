@@ -1,5 +1,6 @@
 package com.shrooms.scaffold.service.order;
 
+import com.shrooms.scaffold.model.dto.order.PurchaseOrderRequest;
 import com.shrooms.scaffold.model.dto.order.RentOrderRequest;
 import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.model.entity.order.Order;
@@ -56,6 +57,33 @@ public class OrderService {
                 .address(request.getAddress())
                 .quantity(request.getQuantity())
                 .rentalWeeks(request.getRentalWeeks())
+                .createdOn(LocalDateTime.now())
+                .installationRequired(request.isInstallationRequired())
+                .totalPrice(totalPrice)
+                .build();
+
+        orderRepository.save(order);
+    }
+
+    public void createPurchaseOrder(PurchaseOrderRequest request, UserDto userDto) {
+        User user = userRepository
+                .findById(userDto.getId())
+                .orElseThrow();
+
+        Scaffold scaffold = scaffoldRepository
+                .findById(request.getScaffoldId())
+                .orElseThrow();
+
+        BigDecimal totalPrice = scaffold.getPriceForSale()
+                .multiply(BigDecimal.valueOf(request.getQuantity()));
+
+        Order order = Order.builder()
+                .user(user)
+                .scaffold(scaffold)
+                .orderStatus(OrderStatus.PENDING)
+                .orderType(OrderType.PURCHASE)
+                .address(request.getAddress())
+                .quantity(request.getQuantity())
                 .createdOn(LocalDateTime.now())
                 .installationRequired(request.isInstallationRequired())
                 .totalPrice(totalPrice)
