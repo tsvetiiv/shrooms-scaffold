@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Scaffold | Shrooms</title>
+    <link rel="stylesheet" href="/css/custom-order.css">
+</head>
+<body>
+
+<header class="header">
+    <a th:href="@{/}" class="logo">
+        <img src="/images/skull-logo.png" alt="Shrooms logo">
+
+        <div class="logo-text">
+            <div class="logo-title">SHROOMS</div>
+            <div class="logo-subtitle">SCAFFOLD SOLUTIONS</div>
+        </div>
+    </a>
+
+    <nav class="nav">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/our-work}">Our Work</a>
+        <a th:href="@{/users/profile}">Profile</a>
+        <a th:href="@{/logout}" class="logout-btn">Logout</a>
+    </nav>
+</header>
+
+
+
+<main class="custom-page">
+
+    <section class="custom-card">
+
+        <h1>Custom Scaffold</h1>
+        <div class="red-line"></div>
+
+        <p class="intro">
+            Need a scaffold solution built around your project?
+            Tell us more about the dimensions, location and access requirements.
+            Our team will review your request and prepare a custom scaffold solution
+            designed for safe and efficient work on your site.
+        </p>
+
+        <form th:action="@{/custom-order}" th:method="post" th:object="${customOrderRequest}">
+
+            <div class="form-group">
+                <label for="projectName">Project name</label>
+                <input id="projectName" type="text" th:field="*{projectName}" placeholder="Example: Roof renovation">
+            </div>
+
+            <div class="dimensions">
+                <div class="form-group">
+                    <label for="height">Height</label>
+                    <input id="height" type="number" step="0.01" th:field="*{height}" placeholder="m">
+                </div>
+
+                <div class="form-group">
+                    <label for="width">Width</label>
+                    <input id="width" type="number" step="0.01" th:field="*{width}" placeholder="m">
+                </div>
+
+                <div class="form-group">
+                    <label for="length">Length</label>
+                    <input id="length" type="number" step="0.01" th:field="*{length}" placeholder="m">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Project address</label>
+                <input id="address" type="text" th:field="*{address}" placeholder="Enter project address">
+            </div>
+
+            <div class="form-group">
+                <label for="contactPhone">Contact phone</label>
+                <input id="contactPhone" type="text" th:field="*{contactPhone}" placeholder="Enter phone number">
+            </div>
+
+            <div class="form-group">
+                <label for="projectDescription">Project description</label>
+                <textarea id="projectDescription"
+                          th:field="*{projectDescription}"
+                          placeholder="Describe your project, access needs and special requirements"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="orderType">Request type</label>
+                <select id="orderType" th:field="*{orderType}">
+                    <option value="RENT">Rent</option>
+                    <option value="BUY">Purchase</option>
+                </select>
+            </div>
+            <small class="error-message"
+                   th:if="${customOrderError}"
+                   th:text="${customOrderError}">
+            </small>
+
+
+            <div class="date-row">
+                <div class="form-group">
+                    <label for="startDate">Start date</label>
+                    <input id="startDate" type="date" th:field="*{startDate}">
+                </div>
+                <small class="error-message"
+                       th:if="${dateError}"
+                       th:text="${dateError}">
+                </small>
+
+                <div class="form-group">
+                    <label for="endDate">End date</label>
+                    <input id="endDate" type="date" th:field="*{endDate}">
+                </div>
+            </div>
+            </div>
+
+            <label class="checkbox-row">
+                <input type="checkbox" th:field="*{installationRequired}">
+                <span>Installation required</span>
+            </label>
+
+            <button type="submit">Submit Request</button>
+
+        </form>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    <span class="copyright">© 2026 Shrooms Scaffold Solutions</span>
+
+    <img src="/images/skull-logo.png"
+         alt="Shrooms Logo"
+         class="footer-logo">
+
+    <span class="powered">Powered by T. Ivanova</span>
+</footer>
+
+</body>
+</html>
