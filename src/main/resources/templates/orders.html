@@ -41,6 +41,7 @@
                 <th>Type</th>
                 <th>Status</th>
                 <th>Created On</th>
+                <th>Quantity</th>
                 <th>Total Price</th>
             </tr>
             </thead>
@@ -55,7 +56,8 @@
                 <td th:text="${order.scaffold.name}"></td>
                 <td th:text="${order.orderType}"></td>
                 <td th:text="${order.orderStatus}"></td>
-                <td th:text="${order.createdOn}"></td>
+                <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}"></td>
+                <td th:text="${order.quantity}"></td>
                 <td th:text="${order.totalPrice}"></td>
             </tr>
 

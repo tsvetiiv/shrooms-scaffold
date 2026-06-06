@@ -8,7 +8,6 @@ body {
     flex-direction: column;
 }
 
-
 .header {
     height: 90px;
     background: rgba(5, 5, 5, 0.82);
@@ -62,23 +61,22 @@ body {
     color: #d61f1f;
 }
 
-
-.rent-page,
-.rent-form-page {
+.purchase-page,
+.purchase-form-page {
     flex: 1;
     padding: 45px 30px;
     background:
             linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.88)),
-            url('/images/rentCard.png') center/cover no-repeat;
+            url('/images/purchaseCard.png') center/cover no-repeat;
 }
 
-.rent-wrapper {
+.purchase-wrapper {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.rent-wrapper h1,
-.rent-form-card h1 {
+.purchase-wrapper h1,
+.purchase-form-card h1 {
     text-align: center;
     margin: 0;
     font-size: 34px;
@@ -114,6 +112,7 @@ body {
     object-fit: contain;
     background: #111;
     padding: 12px;
+    box-sizing: border-box;
 }
 
 .scaffold-content {
@@ -127,10 +126,9 @@ body {
     margin: 0 0 12px;
     color: white;
     font-size: 22px;
+    text-align: center;
 }
-.scaffold-content p {
-    min-height: 180px;
-}
+
 .scaffold-content p,
 .selected-description {
     color: #d5d5d5;
@@ -138,17 +136,32 @@ body {
     line-height: 1.6;
 }
 
-.scaffold-info,
+.scaffold-content p {
+    height: 180px;
+    overflow: hidden;
+    margin: 0;
+}
+
+.scaffold-info {
+    height: 90px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+    gap: 10px;
+    margin: 18px 0;
+}
+
 .selected-info {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin: 18px 0;
-    min-height: 90px;
 }
 
 .scaffold-info span,
 .selected-info span {
+    height: fit-content;
     background: rgba(214,31,31,0.15);
     border: 1px solid rgba(214,31,31,0.3);
     border-radius: 8px;
@@ -166,18 +179,15 @@ body {
     margin-bottom: 15px;
 }
 
-.rent-btn {
+.purchase-btn {
     display: flex;
     justify-content: center;
     align-items: center;
-
     width: 100%;
     padding: 14px 0;
-
     background: #d61f1f;
     color: white;
     text-decoration: none;
-
     border-radius: 8px;
     font-weight: bold;
     box-sizing: border-box;
@@ -196,21 +206,22 @@ body {
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
-.rent-btn:hover,
+.purchase-btn:hover,
 .submit-btn:hover {
     background: #b81818;
+    color: white;
 }
 
-
-.rent-form-page {
+.purchase-form-page {
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
 
-.rent-form-card {
+.purchase-form-card {
     width: 100%;
     max-width: 850px;
     background: rgba(10,10,10,0.93);
@@ -218,6 +229,7 @@ body {
     border-radius: 14px;
     padding: 35px;
     box-shadow: 0 0 28px rgba(0,0,0,0.5);
+    box-sizing: border-box;
 }
 
 .selected-scaffold-img {
@@ -228,6 +240,7 @@ body {
     padding: 12px;
     border-radius: 10px;
     margin-bottom: 22px;
+    box-sizing: border-box;
 }
 
 .selected-description {
@@ -252,6 +265,7 @@ body {
     background: rgba(255,255,255,0.07);
     color: white;
     font-size: 15px;
+    box-sizing: border-box;
 }
 
 .form-group input:focus {
@@ -280,7 +294,6 @@ body {
     color: #d61f1f;
     text-decoration: none;
 }
-
 
 .footer {
     height: 90px;

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase Scaffold | Shrooms</title>
+    <link rel="stylesheet" th:href="@{/css/purchase.css}">
+</head>
+<body>
+
+<header class="header">
+    <a th:href="@{/}" class="brand">
+        <img src="/images/skull-logo.png" alt="Shrooms logo">
+        <div>
+            <div class="brand-title">SHROOMS</div>
+            <div class="brand-subtitle">SCAFFOLD SOLUTIONS</div>
+        </div>
+    </a>
+
+    <nav class="nav">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/our-work}">Our Work</a>
+        <a th:href="@{/orders}">My Orders</a>
+        <a th:href="@{/users/profile}">Profile</a>
+        <a th:href="@{/logout}" class="logout-btn">Logout</a>
+    </nav>
+</header>
+
+<main class="purchase-form-page">
+    <section class="purchase-form-card">
+
+        <h1 th:text="'Purchase ' + ${scaffold.name}">Purchase Scaffold</h1>
+        <div class="red-line"></div>
+
+        <img class="selected-scaffold-img"
+             th:src="${scaffold.imageUrl}"
+             th:alt="${scaffold.name}">
+
+        <p class="selected-description"
+           th:text="${scaffold.description}">
+            Scaffold description
+        </p>
+
+        <div class="selected-info">
+            <span th:text="'Height: ' + ${scaffold.height} + ' m'"></span>
+            <span th:text="'Length: ' + ${scaffold.length} + ' m'"></span>
+            <span th:text="'Width: ' + ${scaffold.width} + ' m'"></span>
+            <span th:text="'Material: ' + ${scaffold.materialType}"></span>
+            <span th:text="'Price: €' + ${scaffold.priceForSale}"></span>
+        </div>
+
+        <form th:action="@{/scaffolds/purchase/{id}(id=${scaffold.id})}"
+              th:method="post"
+              th:object="${purchaseOrderRequest}">
+
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input id="quantity"
+                       type="number"
+                       min="1"
+                       th:field="*{quantity}"
+                       placeholder="Enter quantity">
+            </div>
+
+
+            <div class="form-group">
+                <label for="address">Delivery Address</label>
+                <input id="address"
+                       type="text"
+                       th:field="*{address}"
+                       placeholder="Enter delivery address">
+            </div>
+
+            <label class="checkbox-row">
+                <input type="checkbox" th:field="*{installationRequired}">
+                Installation required
+            </label>
+
+            <button type="submit" class="submit-btn">
+                Submit Purchase Order
+            </button>
+        </form>
+
+        <a th:href="@{/scaffolds/purchase}" class="back-link">
+            Back to Purchase Options
+        </a>
+
+    </section>
+</main>
+
+<footer class="footer">
+    <span class="copyright">© 2026 Shrooms Scaffold Solutions</span>
+
+    <img src="/images/skull-logo.png"
+         alt="Shrooms Logo"
+         class="footer-logo">
+
+    <span class="powered">Powered by T. Ivanova</span>
+</footer>
+
+</body>
+</html>
