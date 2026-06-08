@@ -30,7 +30,7 @@
 
     <h1>Edit Profile</h1>
     <div class="red-line"></div>
-    <form th:action="@{/users/profile/edit}" method="post">
+    <form th:action="@{/users/profile/edit}" th:object="${userEditProfileDto}" method="post">
 
       <div class="form-group">
         <label>Username</label>
@@ -39,22 +39,22 @@
 
       <div class="form-group">
         <label>First Name</label>
-        <input type="text" name="firstName" th:value="${user.firstName}">
+        <input type="text" th:field="*{firstName}">
       </div>
 
       <div class="form-group">
         <label>Last Name</label>
-        <input type="text" name="lastName" th:value="${user.lastName}">
+        <input type="text" th:field="*{lastName}">
       </div>
 
       <div class="form-group">
         <label>Email</label>
-        <input type="email" name="email" th:value="${user.email}">
+        <input type="email" th:field="*{email}">
       </div>
 
       <div class="form-group">
         <label>Profile Picture URL</label>
-        <input type="text" name="profilePicture" th:value="${user.profilePicture}">
+        <input type="text" th:field="*{profilePicture}">
       </div>
 
       <button type="submit" class="save-profile-btn">Save Changes</button>

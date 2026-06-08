@@ -2,6 +2,7 @@ package com.shrooms.scaffold.service.user;
 
 import com.shrooms.scaffold.mapper.user.UserMapper;
 import com.shrooms.scaffold.model.dto.user.UserDto;
+import com.shrooms.scaffold.model.dto.user.UserEditProfileDto;
 import com.shrooms.scaffold.model.dto.user.UserLoginRequest;
 import com.shrooms.scaffold.model.dto.user.UserRegisterRequest;
 import com.shrooms.scaffold.model.entity.user.User;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 
 @Service
@@ -56,6 +58,25 @@ public class UserService {
             throw new RuntimeException("Invalid username or password");
         }
         return UserMapper.toUserDto(user);
+    }
+
+    public UserDto editProfile(UUID userId, UserEditProfileDto userEditProfileDto) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!user.getEmail().equals(userEditProfileDto.getEmail())
+                && userRepository.existsByEmail(userEditProfileDto.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
+
+        user.setFirstName(userEditProfileDto.getFirstName());
+        user.setLastName(userEditProfileDto.getLastName());
+        user.setEmail(userEditProfileDto.getEmail());
+        user.setProfilePicture(userEditProfileDto.getProfilePicture());
+
+        User savedUser = userRepository.save(user);
+
+        return UserMapper.toUserDto(savedUser);
     }
 
 }
