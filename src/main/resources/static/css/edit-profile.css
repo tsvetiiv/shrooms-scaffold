@@ -13,8 +13,6 @@ body {
     background-attachment: fixed;
 }
 
-/* HEADER */
-
 .header {
     height: 95px;
     padding: 0 50px;
@@ -93,8 +91,6 @@ body {
 
     color: white !important;
 }
-
-/* MAIN */
 
 .edit-page {
     min-height: calc(100vh - 185px);
@@ -219,7 +215,11 @@ button:hover {
     color: #e32626;
 }
 
-/* FOOTER */
+.error {
+    color: #d61f1f;
+    font-size: 13px;
+    margin-top: 6px;
+}
 
 .footer {
     height: 90px;
