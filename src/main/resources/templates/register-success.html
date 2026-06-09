@@ -3,28 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Registration Successful</title>
+  <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/register-success.css">
 </head>
 <body>
 
-<header class="header">
-
-  <a th:href="@{/}"  class="logo">
-    <img src="/images/skull-logo.png" alt="Shrooms logo">
-
-    <div class="logo-text">
-      <div class="logo-title">SHROOMS</div>
-      <div class="logo-subtitle">SCAFFOLD SOLUTIONS</div>
-    </div>
-  </a>
-
-  <nav class="nav">
-    <a th:href="@{/}" >Home</a>
-    <a th:href="@{/scaffolds}">Our Work</a>
-    <a th:href="@{/login}" class="login-btn">Login</a>
-  </nav>
-
-</header>
+<div th:insert="~{fragments/common/header :: header}"></div>
 
 <main class="success-page">
 

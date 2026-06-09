@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class OrdersController {
 
     private final OrderService orderService;
-    private final CustomOrderService  customOrderService;;
+    private final CustomOrderService  customOrderService;
 
     public OrdersController(OrderService orderService, CustomOrderService customOrderService) {
         this.orderService = orderService;

@@ -3,27 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>My Orders | Shrooms</title>
+    <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/orders.css">
 </head>
 <body>
-
-<header class="header">
-    <a th:href="@{/}" class="logo">
-        <img src="/images/skull-logo.png" alt="Shrooms logo">
-
-        <div class="logo-text">
-            <div class="logo-title">SHROOMS</div>
-            <div class="logo-subtitle">SCAFFOLD SOLUTIONS</div>
-        </div>
-    </a>
-
-    <nav class="nav">
-        <a th:href="@{/}">Home</a>
-        <a th:href="@{/our-work}">Our Work</a>
-        <a th:href="@{/users/profile}">Profile</a>
-        <a th:href="@{/logout}" class="logout-btn">Logout</a>
-    </nav>
-</header>
+<div th:insert="~{fragments/common/header :: header}"></div>
 
 <main class="orders-page">
 

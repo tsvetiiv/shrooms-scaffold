@@ -6,7 +6,7 @@ body {
 
     background:
             linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.88)),
-            url('/images/windmill.jpg');
+            url('/images/windmill.JPG');
 
     background-size: cover;
     background-position: center;
@@ -14,88 +14,13 @@ body {
     background-attachment: fixed;
 }
 
-.header {
-    height: 95px;
-    padding: 0 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    background: rgba(5, 5, 5, 0.78);
-    backdrop-filter: blur(8px);
-
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 5px 24px rgba(0,0,0,0.55);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    text-decoration: none;
-}
-
-.logo img {
-    width: 72px;
-    height: 72px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.logo-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.logo-title {
-    font-size: 36px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    color: #f2f2f2;
-}
-
-.logo-subtitle {
-    margin-top: 3px;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    color: #d61f1f;
-}
-
-.nav {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
-
-.nav a {
-    color: #f5f5f5;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.nav a:hover {
-    color: #e32626;
-}
 
 
 
-/* =========================================================
-   orders.css - Shrooms / My Orders
-   ---------------------------------------------------------
-   Този файл е за templates/orders.html.
-   Линкни го с:
-   <link rel="stylesheet" th:href="@{/css/orders.css}">
 
-   Ако ползваш Thymeleaf fragments, header/footer могат да
-   се replace-нат с th:replace, стига HTML-ът вътре да пази
-   същите класове:
-   .header, .logo, .logo-text, .nav, .footer
-   ========================================================= */
 
 :root {
-    /* Основни цветове */
+
     --color-bg: #050505;
     --color-bg-soft: #0a0a0a;
     --color-surface: rgba(10, 10, 10, 0.88);
@@ -112,16 +37,16 @@ body {
     --color-text-soft: #d6d6d6;
     --color-text-muted: #a8a8a8;
 
-    /* Сенки */
+
     --shadow-card: 0 18px 38px rgba(0, 0, 0, 0.42);
     --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.25);
 
-    /* Радиуси */
+
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-pill: 999px;
 
-    /* Spacing */
+
     --space-2: 8px;
     --space-3: 12px;
     --space-4: 16px;
@@ -132,8 +57,6 @@ body {
     --space-9: 48px;
 
     --content-width: 1120px;
-
-    /* Анимации */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
 }
@@ -172,114 +95,6 @@ img {
     max-width: 100%;
 }
 
-/* =========================================================
-   Header / Navigation
-   Използва същите класове като останалите Thymeleaf страници
-   ========================================================= */
-
-.header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-7);
-
-    padding: 22px 40px;
-
-    background: rgba(5, 5, 5, 0.82);
-    border-bottom: 1px solid rgba(214, 31, 31, 0.28);
-    box-shadow: var(--shadow-soft);
-    backdrop-filter: blur(8px);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
-    text-decoration: none;
-    min-width: 0;
-}
-
-.logo img {
-    width: 64px;
-    height: 64px;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-
-.logo-text {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
-.logo-title {
-    color: #ffffff;
-    font-size: 1.75rem;
-    font-weight: 800;
-    letter-spacing: 0.22rem;
-    line-height: 1;
-}
-
-.logo-subtitle {
-    margin-top: 6px;
-    color: var(--color-accent);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.20rem;
-    line-height: 1.1;
-}
-
-.nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.nav a {
-    text-decoration: none;
-    color: var(--color-text-soft);
-    padding: 10px 14px;
-    border-radius: var(--radius-pill);
-    border: 1px solid transparent;
-
-    transition:
-            background var(--transition-fast),
-            color var(--transition-fast),
-            border-color var(--transition-fast),
-            transform var(--transition-fast),
-            box-shadow var(--transition-fast);
-}
-
-.nav a:hover,
-.nav a:focus-visible,
-.nav a.active,
-.nav a[aria-current="page"] {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(214, 31, 31, 0.28);
-    outline: none;
-    transform: translateY(-1px);
-}
-
-.nav .logout-btn,
-.nav .register-btn {
-    background: var(--color-accent);
-    color: #ffffff;
-    font-weight: 700;
-    box-shadow: 0 12px 24px rgba(214, 31, 31, 0.22);
-}
-
-.nav .logout-btn:hover,
-.nav .logout-btn:focus-visible,
-.nav .register-btn:hover,
-.nav .register-btn:focus-visible {
-    background: #eb2a2a;
-    border-color: rgba(255, 255, 255, 0.16);
-}
 
 .orders-page {
     flex: 1;
@@ -496,36 +311,3 @@ button:hover {
     background: #e32626;
 }
 
-
-.footer {
-    height: 90px;
-
-    background: rgba(5, 5, 5, 0.82);
-
-    border-top: 1px solid rgba(214,31,31,0.4);
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 0 40px;
-}
-
-.footer-logo {
-    width: 55px;
-    height: 55px;
-
-    object-fit: cover;
-
-    border-radius: 8px;
-}
-
-.copyright,
-.powered {
-    color: #cfcfcf;
-    font-size: 13px;
-}
-
-.powered {
-    color: #d61f1f;
-}

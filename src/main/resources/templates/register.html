@@ -3,29 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Register | Shrooms</title>
+  <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
 
-<header class="header">
-
-  <a th:href="@{/}"  class="logo">
-    <img src="/images/skull-logo.png" alt="Shrooms logo">
-
-    <div class="logo-text">
-      <div class="logo-title">SHROOMS</div>
-      <div class="logo-subtitle">SCAFFOLD SOLUTIONS</div>
-    </div>
-  </a>
-
-  <nav class="nav">
-    <a th:href="@{/}" >Home</a>
-    <a th:href="@{/scaffolds}">Our Work</a>
-    <a th:href="@{/login}" class="login-btn">Login</a>
-    <a th:href="@{/register}" class="register-btn">Register</a>
-  </nav>
-
-</header>
+<div th:insert="~{fragments/common/header :: header}"></div>
 
 <main class="register-page">
   <section class="register-card">

@@ -3,27 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Purchase Scaffold | Shrooms</title>
+    <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" th:href="@{/css/purchase.css}">
 </head>
 <body>
 
-<header class="header">
-    <a th:href="@{/}" class="brand">
-        <img src="/images/skull-logo.png" alt="Shrooms logo">
-        <div>
-            <div class="brand-title">SHROOMS</div>
-            <div class="brand-subtitle">SCAFFOLD SOLUTIONS</div>
-        </div>
-    </a>
-
-    <nav class="nav">
-        <a th:href="@{/}">Home</a>
-        <a th:href="@{/our-work}">Our Work</a>
-        <a th:href="@{/orders}">My Orders</a>
-        <a th:href="@{/users/profile}">Profile</a>
-        <a th:href="@{/logout}" class="logout-btn">Logout</a>
-    </nav>
-</header>
+<div th:insert="~{fragments/common/header :: header}"></div>
 
 <main class="purchase-form-page">
     <section class="purchase-form-card">
