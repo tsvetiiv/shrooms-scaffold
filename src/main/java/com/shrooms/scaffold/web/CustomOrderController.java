@@ -26,10 +26,6 @@ public class CustomOrderController {
 
         UserDto user = (UserDto) session.getAttribute("user");
 
-        if (user == null) {
-            return new ModelAndView("redirect:/login");
-        }
-
         ModelAndView modelAndView = new ModelAndView("custom-order");
         modelAndView.addObject("customOrderRequest", new CustomOrderRequest());
 
@@ -41,10 +37,6 @@ public class CustomOrderController {
                                         HttpSession session) {
 
         UserDto user = (UserDto) session.getAttribute("user");
-
-        if (user == null) {
-            return new ModelAndView("redirect:/login");
-        }
 
         try {
             customOrderService.createCustomOrder(customOrderRequest, user);

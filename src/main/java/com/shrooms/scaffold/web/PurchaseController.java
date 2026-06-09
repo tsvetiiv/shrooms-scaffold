@@ -24,10 +24,7 @@ public class PurchaseController {
     }
 
     @GetMapping
-    public ModelAndView getPurchasePage(HttpSession session) {
-        if (session.getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login");
-        }
+    public ModelAndView getPurchasePage() {
 
         ModelAndView modelAndView = new ModelAndView("purchase");
         modelAndView.addObject("scaffolds", scaffoldService.findAll());
@@ -36,11 +33,7 @@ public class PurchaseController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView getPurchaseForm(@PathVariable UUID id, HttpSession session) {
-        if (session.getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login");
-        }
-
+    public ModelAndView getPurchaseForm(@PathVariable UUID id) {
         ModelAndView modelAndView = new ModelAndView("purchase-form");
         modelAndView.addObject("scaffold", scaffoldService.findById(id));
         modelAndView.addObject("purchaseOrderRequest", new PurchaseOrderRequest());
@@ -54,10 +47,6 @@ public class PurchaseController {
                                HttpSession session) {
 
         UserDto user = (UserDto) session.getAttribute("user");
-
-        if (user == null) {
-            return "redirect:/login";
-        }
 
         purchaseOrderRequest.setScaffoldId(id);
 

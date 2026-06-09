@@ -24,10 +24,7 @@ public class RentController {
     }
 
     @GetMapping
-    public ModelAndView getRentPage(HttpSession session) {
-        if (session.getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login");
-        }
+    public ModelAndView getRentPage() {
 
         ModelAndView modelAndView = new ModelAndView("rent");
         modelAndView.addObject("scaffolds", scaffoldService.findAll());
@@ -36,10 +33,7 @@ public class RentController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView getRentForm(@PathVariable UUID id, HttpSession session) {
-        if (session.getAttribute("user") == null) {
-            return new ModelAndView("redirect:/login");
-        }
+    public ModelAndView getRentForm(@PathVariable UUID id) {
 
         ModelAndView modelAndView = new ModelAndView("rent-form");
         modelAndView.addObject("scaffold", scaffoldService.findById(id));
@@ -54,10 +48,6 @@ public class RentController {
                                HttpSession session) {
 
         UserDto user = (UserDto) session.getAttribute("user");
-
-        if (user == null) {
-            return "redirect:/login";
-        }
 
         rentOrderRequest.setScaffoldId(id);
 
