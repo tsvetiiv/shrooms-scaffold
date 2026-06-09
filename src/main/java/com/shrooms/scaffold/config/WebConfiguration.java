@@ -22,17 +22,24 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authenticationInterceptor)
                 .addPathPatterns(
+                        "/orders",
                         "/orders/**",
+                        "/users/profile",
                         "/users/profile/**",
                         "/scaffolds/purchase",
                         "/scaffolds/purchase/**",
                         "/scaffolds/rent",
                         "/scaffolds/rent/**",
+                        "/custom-order",
                         "/custom-order/**",
+                        "/admin",
                         "/admin/**"
                 );
 
         registry.addInterceptor(adminInterceptor)
-                .addPathPatterns("/admin/**");
+                .addPathPatterns(
+                        "/admin",
+                        "/admin/**"
+                );
     }
 }
