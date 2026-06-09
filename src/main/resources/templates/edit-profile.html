@@ -31,7 +31,7 @@
     <h1>Edit Profile</h1>
     <div class="red-line"></div>
     <form th:action="@{/users/profile/edit}" th:object="${userEditProfileDto}" method="post">
-
+      <input type="hidden" name="_method" value="put">
       <div class="form-group">
         <label>Username</label>
         <input type="text" name="username" th:value="${user.username}" readonly>
