@@ -1,6 +1,7 @@
 package com.shrooms.scaffold.model.dto.user;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,8 @@ public class UserRegisterRequest {
     private String confirmPassword;
     @NotBlank
     @Email(message = "Please enter valid email")
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
+            message = "Email must contain a valid domain")
     private String email;
     @NotBlank
     private String firstName;
