@@ -59,6 +59,7 @@ public class CustomOrderService {
                 .startDate(customRequest.getStartDate())
                 .endDate(customRequest.getEndDate())
                 .requestStatus(RequestStatus.PENDING)
+                .createdOn(LocalDate.now())
                 .build();
 
         customOrderRepository.save(customOrder);

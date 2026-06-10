@@ -141,9 +141,9 @@ img {
 
     box-shadow: 0 0 16px rgba(214, 31, 31, 0.35);
 }
-
 .table-responsive {
     width: 100%;
+    max-width: 100%;
     overflow-x: auto;
     border-radius: 10px;
     -webkit-overflow-scrolling: touch;
@@ -155,41 +155,53 @@ img {
 
 .table-responsive::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.04);
-    border-radius: var(--radius-pill);
+    border-radius: 999px;
 }
 
 .table-responsive::-webkit-scrollbar-thumb {
-    background: rgba(214, 31, 31, 0.5);
-    border-radius: var(--radius-pill);
+    background: rgba(214, 31, 31, 0.55);
+    border-radius: 999px;
 }
 
 .orders-table {
     width: 100%;
-    min-width: 760px;
+    min-width: 900px;
     border-collapse: collapse;
+    table-layout: fixed;
+
     overflow: hidden;
     border-radius: 10px;
+
     background: rgba(255, 255, 255, 0.02);
 }
 
 .orders-table thead th {
-    padding: 16px 18px;
+    padding: 16px 14px;
+
     background: #d61f1f;
     color: #ffffff;
-    font-size: 0.86rem;
+
+    font-size: 0.82rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     text-align: center;
-    white-space: nowrap;
+
+    white-space: normal;
+    overflow-wrap: break-word;
 }
 
 .orders-table tbody td {
-    padding: 16px 18px;
+    padding: 16px 14px;
+
     color: var(--color-text-soft);
     text-align: center;
     vertical-align: middle;
+
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    overflow-wrap: break-word;
+    word-break: normal;
 
     transition:
             background var(--transition-fast),
@@ -199,7 +211,6 @@ img {
 .orders-table th:first-child,
 .orders-table td:first-child {
     text-align: left;
-    min-width: 220px;
 }
 
 .orders-table tbody td:first-child {
@@ -223,7 +234,6 @@ img {
     color: #ffffff;
 }
 
-
 .orders-table tbody td:nth-child(2),
 .orders-table tbody td:nth-child(3) {
     font-weight: 700;
@@ -231,15 +241,14 @@ img {
     text-transform: uppercase;
 }
 
-
-.orders-table tbody td:nth-child(4) {
-    white-space: nowrap;
+.orders-table tbody td:nth-child(4),
+.orders-table tbody td:nth-child(5),
+.orders-table tbody td:nth-child(6) {
     font-variant-numeric: tabular-nums;
 }
 
-
 .orders-table tbody td:last-child {
-    white-space: nowrap;
+    white-space: normal;
     font-weight: 700;
     color: #ffffff;
 }
@@ -247,14 +256,14 @@ img {
 .orders-table .empty-row td,
 .orders-table td[colspan] {
     padding: 28px 18px;
+
     text-align: center !important;
     color: var(--color-text-muted);
     font-style: italic;
     letter-spacing: 0.02em;
+
     background: rgba(255, 255, 255, 0.02);
 }
-
-
 
 .form-group {
     margin-bottom: 20px;

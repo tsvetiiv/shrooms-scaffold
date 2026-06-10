@@ -62,6 +62,10 @@ public class CustomOrder {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OrderType orderType;
+
     private BigDecimal estimatedPrice;
+
+    @Column(nullable = false)
+    private LocalDate createdOn;
 
 }

@@ -17,6 +17,7 @@
 
         <h2>Rent & Purchase Orders</h2>
 
+        <div class="table-responsive">
         <table class="orders-table">
             <thead>
             <tr>
@@ -44,9 +45,11 @@
             </tr>
             </tbody>
         </table>
+        </div>
 
         <h2 class="custom-title">Custom Requests</h2>
 
+        <div class="table-responsive">
         <table class="orders-table">
             <thead>
             <tr>
@@ -56,13 +59,14 @@
                 <th>Dimensions</th>
                 <th>Start Date</th>
                 <th>End Date</th>
+                <th>Created On</th>
                 <th>Price</th>
             </tr>
             </thead>
 
             <tbody>
             <tr th:if="${#lists.isEmpty(customOrders)}">
-                <td colspan="6">No custom requests yet.</td>
+                <td colspan="8">No custom requests yet.</td>
             </tr>
 
             <tr th:each="customOrder : ${customOrders}">
@@ -76,6 +80,7 @@
                 </td>
                 <td th:text="${customOrder.startDate}">Start</td>
                 <td th:text="${customOrder.endDate}">End</td>
+                <td th:text="${#temporals.format(customOrder.createdOn, 'dd.MM.yyyy HH:mm')}">Created</td>
                 <td>
     <span th:if="${customOrder.estimatedPrice != null}"
           th:text="${customOrder.estimatedPrice + ' €'}">
@@ -87,6 +92,7 @@
             </tr>
             </tbody>
         </table>
+        </div>
 
     </section>
 
