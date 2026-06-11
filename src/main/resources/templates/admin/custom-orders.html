@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Custom Requests | Shrooms</title>
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/admin-orders.css">
+</head>
+<body>
+
+<div th:insert="~{fragments/common/header :: header}"></div>
+
+<main class="admin-orders-page">
+  <section class="admin-orders-panel">
+
+    <div class="admin-page-heading">
+      <h1>Custom Requests</h1>
+      <a th:href="@{/admin}" class="back-admin-link">Back to Dashboard</a>
+    </div>
+
+    <div class="red-line"></div>
+
+    <div class="table-responsive">
+      <table class="admin-orders-table">
+        <thead>
+        <tr>
+          <th>Project</th>
+          <th>Customer</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Dimensions</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Created On</th>
+          <th>Estimated Price</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:if="${#lists.isEmpty(customOrders)}">
+          <td colspan="11">No custom requests yet.</td>
+        </tr>
+
+        <tr th:each="customOrder : ${customOrders}">
+          <td th:text="${customOrder.projectName}">project</td>
+          <td th:text="${customOrder.user.username}">customer</td>
+          <td th:text="${customOrder.user.email}">email</td>
+          <td th:text="${customOrder.contactPhone}">phone</td>
+          <td th:text="${customOrder.orderType}">type</td>
+          <td th:text="${customOrder.requestStatus}">status</td>
+          <td>
+            <span th:text="${customOrder.height}">0</span>m ×
+            <span th:text="${customOrder.width}">0</span>m ×
+            <span th:text="${customOrder.length}">0</span>m
+          </td>
+          <td th:text="${customOrder.startDate}">start</td>
+          <td th:text="${customOrder.endDate}">end</td>
+          <td th:text="${#temporals.format(customOrder.createdOn, 'dd.MM.yyyy HH:mm')}">created</td>
+          <td>
+                        <span th:if="${customOrder.estimatedPrice != null}"
+                              th:text="${customOrder.estimatedPrice + ' €'}">
+                        </span>
+            <span th:if="${customOrder.estimatedPrice == null}">
+                            Awaiting quote
+                        </span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+</main>
+
+<div th:insert="~{fragments/common/footer :: footer}"></div>
+
+</body>
+</html>

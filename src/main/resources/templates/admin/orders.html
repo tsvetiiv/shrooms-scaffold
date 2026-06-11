@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Orders | Shrooms</title>
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/admin-orders.css">
+</head>
+<body>
+
+<div th:insert="~{fragments/common/header :: header}"></div>
+
+<main class="admin-orders-page">
+    <section class="admin-orders-panel">
+
+        <div class="admin-page-heading">
+            <h1>Orders</h1>
+            <a th:href="@{/admin}" class="back-admin-link">Back to Dashboard</a>
+        </div>
+
+        <div class="red-line"></div>
+
+        <div class="table-responsive">
+            <table class="admin-orders-table">
+                <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Scaffold</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Created On</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:if="${#lists.isEmpty(orders)}">
+                    <td colspan="8">No orders yet.</td>
+                </tr>
+
+                <tr th:each="order : ${orders}">
+                    <td th:text="${order.user.username}">customer</td>
+                    <td th:text="${order.user.email}">email</td>
+                    <td th:text="${order.scaffold.name}">scaffold</td>
+                    <td th:text="${order.orderType}">type</td>
+                    <td th:text="${order.orderStatus}">status</td>
+                    <td th:text="${order.quantity}">quantity</td>
+                    <td th:text="${order.totalPrice + ' €'}">price</td>
+                    <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">created</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+</main>
+
+<div th:insert="~{fragments/common/footer :: footer}"></div>
+
+</body>
+</html>

@@ -13,4 +13,5 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
 
     List<Order> findAllByUserIdOrderByCreatedOnDesc(UUID userId);
 
+    List<Order> findAllByOrderByCreatedOnDesc();
 }

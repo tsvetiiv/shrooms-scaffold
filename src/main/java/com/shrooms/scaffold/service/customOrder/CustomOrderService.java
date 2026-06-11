@@ -65,5 +65,8 @@ public class CustomOrderService {
         customOrderRepository.save(customOrder);
     }
 
+    public List<CustomOrder> getAllCustomOrders() {
+        return customOrderRepository.findAllByOrderByCreatedOnDesc();
+    }
 
 }

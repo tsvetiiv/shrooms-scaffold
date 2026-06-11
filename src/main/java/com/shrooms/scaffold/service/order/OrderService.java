@@ -3,6 +3,7 @@ package com.shrooms.scaffold.service.order;
 import com.shrooms.scaffold.model.dto.order.PurchaseOrderRequest;
 import com.shrooms.scaffold.model.dto.order.RentOrderRequest;
 import com.shrooms.scaffold.model.dto.user.UserDto;
+import com.shrooms.scaffold.model.entity.customOrder.CustomOrder;
 import com.shrooms.scaffold.model.entity.order.Order;
 import com.shrooms.scaffold.model.entity.order.OrderStatus;
 import com.shrooms.scaffold.model.entity.order.OrderType;
@@ -90,5 +91,9 @@ public class OrderService {
                 .build();
 
         orderRepository.save(order);
+    }
+
+    public List<Order> getAllOrders() {
+        return orderRepository.findAllByOrderByCreatedOnDesc();
     }
 }
