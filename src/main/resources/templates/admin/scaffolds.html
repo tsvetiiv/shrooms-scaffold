@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Scaffolds | Shrooms</title>
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/admin-scaffolds.css">
+</head>
+<body>
+
+<div th:insert="~{fragments/common/header :: header}"></div>
+
+<main class="admin-scaffolds-page">
+  <section class="admin-scaffolds-panel">
+
+    <div class="admin-page-heading">
+      <h1>Scaffolds</h1>
+      <a th:href="@{/admin}" class="back-admin-link">Back to Dashboard</a>
+    </div>
+
+    <div class="red-line"></div>
+
+    <div class="scaffold-admin-grid">
+      <article class="scaffold-admin-card" th:each="scaffold : ${scaffolds}">
+        <img th:src="${scaffold.imageUrl}"
+             th:alt="${scaffold.name}">
+
+        <div class="scaffold-admin-content">
+          <h2 th:text="${scaffold.name}">Scaffold Name</h2>
+
+          <p th:text="${scaffold.description}">
+            Scaffold description
+          </p>
+
+          <div class="scaffold-admin-info">
+            <span th:text="'Category: ' + ${scaffold.scaffoldCategory}">Category</span>
+            <span th:text="'Material: ' + ${scaffold.materialType}">Material</span>
+            <span th:text="'Height: ' + ${scaffold.height} + ' m'">Height</span>
+            <span th:text="'Width: ' + ${scaffold.width} + ' m'">Width</span>
+            <span th:text="'Length: ' + ${scaffold.length} + ' m'">Length</span>
+            <span th:text="'Rent: €' + ${scaffold.priceForRent}">Rent</span>
+            <span th:text="'Sale: €' + ${scaffold.priceForSale}">Sale</span>
+            <span th:text="${scaffold.available ? 'Available' : 'Unavailable'}">Availability</span>
+          </div>
+
+          <a th:href="@{/admin/scaffolds/{id}/edit(id=${scaffold.id})}"
+             class="edit-scaffold-btn">
+            Edit Info
+          </a>
+        </div>
+      </article>
+    </div>
+
+  </section>
+</main>
+
+<div th:insert="~{fragments/common/footer :: footer}"></div>
+
+</body>
+</html>

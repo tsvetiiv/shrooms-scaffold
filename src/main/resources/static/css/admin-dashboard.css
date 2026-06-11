@@ -45,8 +45,9 @@ body {
 }
 
 .admin-card {
-    min-height: 210px;
-    padding: 28px;
+    overflow: hidden;
+
+    min-height: 330px;
 
     background: rgba(8, 10, 10, 0.92);
     border: 1px solid rgba(214, 31, 31, 0.35);
@@ -58,7 +59,6 @@ body {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
 
     transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
@@ -67,6 +67,23 @@ body {
     transform: translateY(-4px);
     border-color: rgba(214, 31, 31, 0.8);
     background: rgba(14, 16, 16, 0.96);
+}
+
+.admin-card img {
+    width: 100%;
+    height: 185px;
+
+    object-fit: cover;
+
+    background: #111111;
+}
+
+.admin-card-content {
+    padding: 24px;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .admin-card h2 {
@@ -83,7 +100,6 @@ body {
     font-size: 15px;
     line-height: 1.55;
 }
-
 @media (max-width: 900px) {
     .admin-actions {
         grid-template-columns: 1fr;
