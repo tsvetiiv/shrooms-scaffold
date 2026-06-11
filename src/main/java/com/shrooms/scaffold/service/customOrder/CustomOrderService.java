@@ -9,8 +9,8 @@ import com.shrooms.scaffold.repository.customRequest.CustomOrderRepository;
 import com.shrooms.scaffold.repository.user.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -69,4 +69,10 @@ public class CustomOrderService {
         return customOrderRepository.findAllByOrderByCreatedOnDesc();
     }
 
+    public void updateCustomOrder (UUID customOrderId,RequestStatus requestStatus, BigDecimal estimatedPrice) {
+        CustomOrder customOrder = customOrderRepository.findById(customOrderId).orElseThrow(() -> new RuntimeException("Custom order not found"));
+        customOrder.setRequestStatus(requestStatus);
+        customOrder.setEstimatedPrice(estimatedPrice);
+        customOrderRepository.save(customOrder);
+    }
 }

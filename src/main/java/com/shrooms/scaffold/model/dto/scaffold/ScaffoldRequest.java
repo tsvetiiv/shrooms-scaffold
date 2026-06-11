@@ -1,0 +1,44 @@
+package com.shrooms.scaffold.model.dto.scaffold;
+
+import com.shrooms.scaffold.model.entity.scaffold.MaterialType;
+import com.shrooms.scaffold.model.entity.scaffold.ScaffoldCategory;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+import lombok.*;
+
+import java.math.BigDecimal;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ScaffoldRequest {
+    @NotBlank(message = "Scaffold name is required")
+    @Size(min = 3, max = 50, message = "Scaffold name must be between 3 and 50 characters")
+    private String name;
+    @NotBlank(message = "Description is required")
+    @Size(min = 20, max = 1000, message = "Description must be between 20 and 1000 characters")
+    private String description;
+    @Positive(message = "Height must be greater than 0")
+    private double height;
+    @Positive(message = "Width must be greater than 0")
+    private double width;
+    @Positive(message = "Length must be greater than 0")
+    private double length;
+    @NotNull(message = "Material type is required")
+    private MaterialType materialType;
+    @NotNull
+    private ScaffoldCategory scaffoldCategory;
+    @NotNull
+    @Positive
+    private BigDecimal priceForRent;
+    @NotNull
+    @Positive
+    private BigDecimal priceForSale;
+    @Size(max = 500)
+    private String imageUrl;
+    private boolean available;
+
+}

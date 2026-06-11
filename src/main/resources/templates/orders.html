@@ -38,7 +38,13 @@
             <tr th:each="order : ${orders}">
                 <td th:text="${order.scaffold.name}">Scaffold</td>
                 <td th:text="${order.orderType}">Type</td>
-                <td th:text="${order.orderStatus}">Status</td>
+                <td>
+    <span class="status-badge"
+          th:classappend="${order.orderStatus.name().toLowerCase()}"
+          th:text="${order.orderStatus}">
+        Status
+    </span>
+                </td>
                 <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">Created</td>
                 <td th:text="${order.quantity}">Quantity</td>
                 <td th:text="${order.totalPrice}">Price</td>
@@ -72,7 +78,13 @@
             <tr th:each="customOrder : ${customOrders}">
                 <td th:text="${customOrder.projectName}">Project</td>
                 <td th:text="${customOrder.orderType}">Type</td>
-                <td th:text="${customOrder.requestStatus}">Status</td>
+                <td>
+    <span class="status-badge"
+          th:classappend="${customOrder.requestStatus.name().toLowerCase()}"
+          th:text="${customOrder.requestStatus}">
+        Status
+    </span>
+                </td>
                 <td>
                     <span th:text="${customOrder.height}">0</span>m ×
                     <span th:text="${customOrder.width}">0</span>m ×

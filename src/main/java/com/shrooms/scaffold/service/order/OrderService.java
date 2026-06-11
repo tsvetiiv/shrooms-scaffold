@@ -96,4 +96,10 @@ public class OrderService {
     public List<Order> getAllOrders() {
         return orderRepository.findAllByOrderByCreatedOnDesc();
     }
+
+    public void updateOrderStatus(UUID orderId, OrderStatus orderStatus) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+        order.setOrderStatus(orderStatus);
+        orderRepository.save(order);
+    }
 }

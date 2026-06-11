@@ -35,12 +35,13 @@
           <th>End Date</th>
           <th>Created On</th>
           <th>Estimated Price</th>
+          <th>Action</th>
         </tr>
         </thead>
 
         <tbody>
         <tr th:if="${#lists.isEmpty(customOrders)}">
-          <td colspan="11">No custom requests yet.</td>
+          <td colspan="12">No custom requests yet.</td>
         </tr>
 
         <tr th:each="customOrder : ${customOrders}">
@@ -49,7 +50,13 @@
           <td th:text="${customOrder.user.email}">email</td>
           <td th:text="${customOrder.contactPhone}">phone</td>
           <td th:text="${customOrder.orderType}">type</td>
-          <td th:text="${customOrder.requestStatus}">status</td>
+          <td>
+    <span class="status-badge"
+          th:classappend="${customOrder.requestStatus.name().toLowerCase()}"
+          th:text="${customOrder.requestStatus}">
+        status
+    </span>
+          </td>
           <td>
             <span th:text="${customOrder.height}">0</span>m ×
             <span th:text="${customOrder.width}">0</span>m ×
@@ -65,6 +72,31 @@
             <span th:if="${customOrder.estimatedPrice == null}">
                             Awaiting quote
                         </span>
+          </td>
+          <td>
+            <form th:action="@{/admin/custom-orders/{id}(id=${customOrder.id})}"
+                  method="post"
+                  class="status-form">
+              <input type="hidden" name="_method" value="put">
+
+              <input type="number"
+                     name="estimatedPrice"
+                     class="price-input"
+                     step="0.01"
+                     min="0"
+                     th:value="${customOrder.estimatedPrice}"
+                     placeholder="Price">
+
+              <select name="requestStatus" class="status-select">
+                <option th:each="status : ${T(com.shrooms.scaffold.model.entity.customOrder.RequestStatus).values()}"
+                        th:value="${status}"
+                        th:text="${status}"
+                        th:selected="${status == customOrder.requestStatus}">
+                </option>
+              </select>
+
+              <button type="submit" class="status-update-btn">Update</button>
+            </form>
           </td>
         </tr>
         </tbody>

@@ -301,7 +301,47 @@ small {
     text-align: center;
     font-size: 14px;
 }
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
+    min-width: 95px;
+    padding: 7px 10px;
+
+    border-radius: 999px;
+
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.status-badge.pending {
+    background: rgba(255, 193, 7, 0.18);
+    border: 1px solid rgba(255, 193, 7, 0.65);
+    color: #ffd45a;
+}
+
+.status-badge.approved {
+    background: rgba(54, 162, 235, 0.18);
+    border: 1px solid rgba(54, 162, 235, 0.65);
+    color: #72c7ff;
+}
+
+.status-badge.completed {
+    background: rgba(46, 204, 113, 0.18);
+    border: 1px solid rgba(46, 204, 113, 0.7);
+    color: #69e89b;
+}
+
+.status-badge.cancelled,
+.status-badge.rejected {
+    background: rgba(214, 31, 31, 0.18);
+    border: 1px solid rgba(214, 31, 31, 0.75);
+    color: #ff7777;
+}
 button {
     width: 100%;
     margin-top: 10px;

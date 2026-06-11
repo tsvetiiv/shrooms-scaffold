@@ -32,12 +32,13 @@
                     <th>Quantity</th>
                     <th>Total Price</th>
                     <th>Created On</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 <tr th:if="${#lists.isEmpty(orders)}">
-                    <td colspan="8">No orders yet.</td>
+                    <td colspan="9">No orders yet.</td>
                 </tr>
 
                 <tr th:each="order : ${orders}">
@@ -45,10 +46,30 @@
                     <td th:text="${order.user.email}">email</td>
                     <td th:text="${order.scaffold.name}">scaffold</td>
                     <td th:text="${order.orderType}">type</td>
-                    <td th:text="${order.orderStatus}">status</td>
+                    <td>
+    <span class="status-badge"
+          th:classappend="${order.orderStatus.name().toLowerCase()}"
+          th:text="${order.orderStatus}">
+        status
+    </span>
+                    </td>
                     <td th:text="${order.quantity}">quantity</td>
                     <td th:text="${order.totalPrice + ' €'}">price</td>
                     <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">created</td>
+                    <td>
+                        <form th:action="@{/admin/orders/{id}/status(id=${order.id})}" method="post" class="status-form">
+                            <input type="hidden" name="_method" value="put">
+                            <select name="orderStatus" class="status-select">
+                                <option th:each="status : ${T(com.shrooms.scaffold.model.entity.order.OrderStatus).values()}"
+                                        th:value="${status}"
+                                        th:text="${status}"
+                                        th:selected="${status == order.orderStatus}">
+                                </option>
+                            </select>
+
+                            <button type="submit" class="status-update-btn">Update</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>

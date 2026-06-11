@@ -1,17 +1,25 @@
 package com.shrooms.scaffold.web;
 
+import com.shrooms.scaffold.model.dto.scaffold.ScaffoldRequest;
 import com.shrooms.scaffold.model.entity.customOrder.CustomOrder;
+import com.shrooms.scaffold.model.entity.customOrder.RequestStatus;
 import com.shrooms.scaffold.model.entity.order.Order;
+import com.shrooms.scaffold.model.entity.order.OrderStatus;
+import com.shrooms.scaffold.model.entity.scaffold.MaterialType;
 import com.shrooms.scaffold.model.entity.scaffold.Scaffold;
+import com.shrooms.scaffold.model.entity.scaffold.ScaffoldCategory;
 import com.shrooms.scaffold.service.customOrder.CustomOrderService;
 import com.shrooms.scaffold.service.order.OrderService;
 import com.shrooms.scaffold.service.scaffold.ScaffoldService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin")
@@ -54,5 +62,43 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView("admin/scaffolds");
         modelAndView.addObject("scaffolds", scaffolds);
         return modelAndView;
+    }
+
+    @PutMapping("/orders/{id}/status")
+    public String updateOrderStatus(@PathVariable UUID id, @RequestParam OrderStatus orderStatus){
+        orderService.updateOrderStatus(id, orderStatus);
+        return "redirect:/admin/orders";
+    }
+    @PutMapping("/custom-orders/{id}")
+    public String updateCustomOrder(@PathVariable UUID id,
+                                          @RequestParam RequestStatus requestStatus,
+                                          @RequestParam BigDecimal estimatedPrice){
+        customOrderService.updateCustomOrder(id, requestStatus, estimatedPrice);
+        return "redirect:/admin/custom-orders";
+    }
+
+    @GetMapping("/scaffolds/{id}/edit")
+    public ModelAndView getEditScaffold(@PathVariable UUID id){
+       ScaffoldRequest scaffoldRequest = scaffoldService.getScaffoldForEdit(id);
+
+        ModelAndView modelAndView = new ModelAndView("admin/edit-scaffold");
+        modelAndView.addObject("scaffoldRequest", scaffoldRequest);
+        modelAndView.addObject("scaffoldId",id);
+        modelAndView.addObject("materialTypes", MaterialType.values());
+        modelAndView.addObject("scaffoldCategories", ScaffoldCategory.values());
+
+        return modelAndView;
+    }
+    @PutMapping("/scaffolds/{id}")
+    public String editScaffold(@PathVariable UUID id,
+                               @Valid @ModelAttribute("scaffoldRequest") ScaffoldRequest scaffoldRequest,
+                               BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "admin/edit-scaffold";
+        }
+
+        scaffoldService.editScaffold(id, scaffoldRequest);
+
+        return "redirect:/admin/scaffolds";
     }
 }
