@@ -2,6 +2,7 @@ package com.shrooms.scaffold.web;
 
 import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.model.dto.user.UserLoginRequest;
+import com.shrooms.scaffold.model.entity.user.RoleType;
 import com.shrooms.scaffold.service.user.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-    private UserService userService;
+    private final UserService userService;
 
 
     public LoginController(UserService userService) {
@@ -43,7 +44,11 @@ public class LoginController {
             UserDto user = userService.login(userLoginRequest);
             session.setAttribute("user", user);
 
-            return new ModelAndView("redirect:/");
+            if (user.getRoleType() == RoleType.ADMIN) {
+                return new ModelAndView("redirect:/admin");
+            }
+            return  new ModelAndView("redirect:/");
+
 
         } catch (RuntimeException exception) {
 
