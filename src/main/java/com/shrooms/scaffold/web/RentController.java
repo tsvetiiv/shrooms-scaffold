@@ -5,7 +5,9 @@ import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.service.order.OrderService;
 import com.shrooms.scaffold.service.scaffold.ScaffoldService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,17 +45,24 @@ public class RentController {
     }
 
     @PostMapping("/{id}")
-    public String rentScaffold(@PathVariable UUID id,
-                               @ModelAttribute RentOrderRequest rentOrderRequest,
-                               HttpSession session) {
+    public ModelAndView rentScaffold(@PathVariable UUID id,
+                                     @Valid @ModelAttribute("rentOrderRequest") RentOrderRequest rentOrderRequest,
+                                     BindingResult bindingResult,
+                                     HttpSession session) {
+
+        if (bindingResult.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView("rent-form");
+            modelAndView.addObject("scaffold", scaffoldService.findById(id));
+            modelAndView.addObject("rentOrderRequest", rentOrderRequest);
+            return modelAndView;
+        }
 
         UserDto user = (UserDto) session.getAttribute("user");
 
         rentOrderRequest.setScaffoldId(id);
-
         orderService.createRentOrder(rentOrderRequest, user);
 
-        return "redirect:/orders";
+        return new ModelAndView("redirect:/orders");
     }
 
 }

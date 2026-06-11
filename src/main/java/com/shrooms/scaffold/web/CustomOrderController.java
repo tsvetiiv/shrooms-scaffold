@@ -4,7 +4,9 @@ import com.shrooms.scaffold.model.dto.order.CustomOrderRequest;
 import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.service.customOrder.CustomOrderService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,9 +35,14 @@ public class CustomOrderController {
     }
 
     @PostMapping
-    public ModelAndView makeCustomOrder(@ModelAttribute CustomOrderRequest customOrderRequest,
+    public ModelAndView makeCustomOrder(@Valid @ModelAttribute("customOrderRequest") CustomOrderRequest customOrderRequest,
+                                        BindingResult bindingResult,
                                         HttpSession session) {
-
+        if (bindingResult.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView("custom-order");
+            modelAndView.addObject("customOrderRequest", customOrderRequest);
+            return modelAndView;
+        }
         UserDto user = (UserDto) session.getAttribute("user");
 
         try {

@@ -41,6 +41,11 @@ public class ScaffoldService {
         return ScaffoldMapper.toScaffoldRequest(scaffold);
     }
 
+    public void createScaffold(ScaffoldRequest request){
+        Scaffold newScaffold = ScaffoldMapper.toScaffoldEntity(request);
+        scaffoldRepository.save(newScaffold);
+    }
+
 
 
 }

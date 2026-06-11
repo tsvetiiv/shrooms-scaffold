@@ -44,6 +44,10 @@
                min="1"
                th:field="*{quantity}"
                placeholder="Enter quantity">
+        <small class="error-message"
+               th:if="${#fields.hasErrors('quantity')}"
+               th:errors="*{quantity}">
+        </small>
       </div>
 
       <div class="form-group">
@@ -53,6 +57,10 @@
                min="1"
                th:field="*{rentalWeeks}"
                placeholder="Enter rental weeks">
+        <small class="error-message"
+               th:if="${#fields.hasErrors('rentalWeeks')}"
+               th:errors="*{rentalWeeks}">
+        </small>
       </div>
 
       <div class="form-group">
@@ -61,6 +69,10 @@
                type="text"
                th:field="*{address}"
                placeholder="Enter delivery address">
+        <small class="error-message"
+               th:if="${#fields.hasErrors('address')}"
+               th:errors="*{address}">
+        </small>
       </div>
 
       <label class="checkbox-row">

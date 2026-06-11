@@ -5,7 +5,9 @@ import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.service.order.OrderService;
 import com.shrooms.scaffold.service.scaffold.ScaffoldService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,9 +44,16 @@ public class PurchaseController {
     }
 
     @PostMapping("/{id}")
-    public String purchaseScaffold(@PathVariable UUID id,
-                               @ModelAttribute PurchaseOrderRequest purchaseOrderRequest,
-                               HttpSession session) {
+    public ModelAndView purchaseScaffold(@PathVariable UUID id,
+                                  @Valid @ModelAttribute("purchaseOrderRequest") PurchaseOrderRequest purchaseOrderRequest,
+                                  BindingResult bindingResult,
+                                  HttpSession session) {
+        if (bindingResult.hasErrors()) {
+            ModelAndView modelAndView = new ModelAndView("purchase-form");
+            modelAndView.addObject("scaffold", scaffoldService.findById(id));
+            modelAndView.addObject("purchaseOrderRequest", purchaseOrderRequest);
+            return modelAndView;
+        }
 
         UserDto user = (UserDto) session.getAttribute("user");
 
@@ -52,7 +61,7 @@ public class PurchaseController {
 
         orderService.createPurchaseOrder(purchaseOrderRequest, user);
 
-        return "redirect:/orders";
+        return new ModelAndView("redirect:/orders");
     }
 
 

@@ -117,3 +117,16 @@
 .powered {
     color: #d61f1f;
 }
+.error-message {
+    display: block;
+    margin-top: 6px;
+
+    color: #ff7777;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.form-group .error-message {
+    margin-bottom: 2px;
+}

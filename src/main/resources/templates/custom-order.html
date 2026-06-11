@@ -30,33 +30,57 @@
             <div class="form-group">
                 <label for="projectName">Project name</label>
                 <input id="projectName" type="text" th:field="*{projectName}" placeholder="Example: Roof renovation">
+                <small class="error-message"
+                       th:if="${#fields.hasErrors('projectName')}"
+                       th:errors="*{projectName}">
+                </small>
             </div>
 
             <div class="dimensions">
                 <div class="form-group">
                     <label for="height">Height</label>
                     <input id="height" type="number" step="0.01" th:field="*{height}" placeholder="m">
+                    <small class="error-message"
+                           th:if="${#fields.hasErrors('height')}"
+                           th:errors="*{height}">
+                    </small>
                 </div>
 
                 <div class="form-group">
                     <label for="width">Width</label>
                     <input id="width" type="number" step="0.01" th:field="*{width}" placeholder="m">
+                    <small class="error-message"
+                           th:if="${#fields.hasErrors('width')}"
+                           th:errors="*{width}">
+                    </small>
                 </div>
 
                 <div class="form-group">
                     <label for="length">Length</label>
                     <input id="length" type="number" step="0.01" th:field="*{length}" placeholder="m">
+                    <small class="error-message"
+                           th:if="${#fields.hasErrors('length')}"
+                           th:errors="*{length}">
+                    </small>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="address">Project address</label>
                 <input id="address" type="text" th:field="*{address}" placeholder="Enter project address">
+                <small class="error-message"
+                       th:if="${#fields.hasErrors('address')}"
+                       th:errors="*{address}">
+                </small>
             </div>
 
             <div class="form-group">
                 <label for="contactPhone">Contact phone</label>
                 <input id="contactPhone" type="text" th:field="*{contactPhone}" placeholder="Enter phone number">
+                <small class="error-message"
+                       th:if="${#fields.hasErrors('contactPhone')}"
+                       th:errors="*{contactPhone}">
+                </small>
             </div>
 
             <div class="form-group">
@@ -64,13 +88,22 @@
                 <textarea id="projectDescription"
                           th:field="*{projectDescription}"
                           placeholder="Describe your project, access needs and special requirements"></textarea>
+                <small class="error-message"
+                       th:if="${#fields.hasErrors('projectDescription')}"
+                       th:errors="*{projectDescription}">
+                </small>
             </div>
             <div class="form-group">
                 <label for="orderType">Request type</label>
                 <select id="orderType" th:field="*{orderType}">
+                    <option value="">Select request type</option>
                     <option value="RENT">Rent</option>
                     <option value="PURCHASE">Purchase</option>
                 </select>
+                <small class="error-message"
+                       th:if="${#fields.hasErrors('orderType')}"
+                       th:errors="*{orderType}">
+                </small>
             </div>
             <small class="error-message"
                    th:if="${customOrderError}"
@@ -81,6 +114,10 @@
                 <div class="form-group">
                     <label for="startDate">Start date</label>
                     <input id="startDate" type="date" th:field="*{startDate}">
+                    <small class="error-message"
+                           th:if="${#fields.hasErrors('endDate')}"
+                           th:errors="*{endDate}">
+                    </small>
                 </div>
 
                 <small class="error-message"
@@ -91,6 +128,10 @@
                 <div class="form-group">
                     <label for="endDate">End date</label>
                     <input id="endDate" type="date" th:field="*{endDate}">
+                    <small class="error-message"
+                           th:if="${#fields.hasErrors('endDate')}"
+                           th:errors="*{endDate}">
+                    </small>
                 </div>
             </div>
 
