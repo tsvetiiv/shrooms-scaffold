@@ -3,8 +3,11 @@ package com.shrooms.scaffold.service.scaffold;
 import com.shrooms.scaffold.mapper.scaffold.ScaffoldMapper;
 import com.shrooms.scaffold.model.dto.scaffold.ScaffoldRequest;
 import com.shrooms.scaffold.model.entity.scaffold.Scaffold;
+import com.shrooms.scaffold.repository.order.OrderRepository;
 import com.shrooms.scaffold.repository.scaffold.ScaffoldRepository;
+import com.shrooms.scaffold.service.order.OrderService;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -12,10 +15,14 @@ import java.util.UUID;
 public class ScaffoldService {
 
     private final ScaffoldRepository scaffoldRepository;
+    private final OrderRepository orderRepository;
 
-    public ScaffoldService(ScaffoldRepository scaffoldRepository) {
+
+    public ScaffoldService(ScaffoldRepository scaffoldRepository, OrderRepository orderRepository) {
         this.scaffoldRepository = scaffoldRepository;
+        this.orderRepository = orderRepository;
     }
+
     public Scaffold findById(UUID id) {
         return scaffoldRepository.findById(id)
                 .orElseThrow();
@@ -26,8 +33,8 @@ public class ScaffoldService {
     }
 
     public void editScaffold(UUID id, ScaffoldRequest scaffoldRequest) {
-       Scaffold scaffold = scaffoldRepository.findById(id).orElseThrow(()
-               -> new RuntimeException("Scaffold not found"));
+        Scaffold scaffold = scaffoldRepository.findById(id).orElseThrow(()
+                -> new RuntimeException("Scaffold not found"));
 
         ScaffoldMapper.updateScaffoldFromRequest(scaffold, scaffoldRequest);
 
@@ -41,11 +48,22 @@ public class ScaffoldService {
         return ScaffoldMapper.toScaffoldRequest(scaffold);
     }
 
-    public void createScaffold(ScaffoldRequest request){
+    public void createScaffold(ScaffoldRequest request) {
         Scaffold newScaffold = ScaffoldMapper.toScaffoldEntity(request);
         scaffoldRepository.save(newScaffold);
     }
 
-
+    public boolean deleteScaffold(UUID id) {
+        Scaffold scaffoldForDelete = scaffoldRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Scaffold not found"));
+        boolean hasOrders = orderRepository.existsByScaffoldId(id);
+        if (hasOrders) {
+            scaffoldForDelete.setAvailable(false);
+            scaffoldRepository.save(scaffoldForDelete);
+            return false;
+        }
+        scaffoldRepository.deleteById(id);
+        return true;
+    }
 
 }

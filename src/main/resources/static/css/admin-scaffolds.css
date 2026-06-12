@@ -148,6 +148,7 @@ body {
 }
 
 .edit-scaffold-btn {
+    display: block;
     margin-top: auto;
     padding: 13px 18px;
 
@@ -165,7 +166,62 @@ body {
 .edit-scaffold-btn:hover {
     background: #b81818;
 }
+.scaffold-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
 
+.scaffold-actions .edit-scaffold-btn,
+.scaffold-actions .delete-scaffold-btn {
+    flex: 1;
+}
+
+.delete-scaffold-form {
+    flex: 1;
+    margin: 0;
+}
+
+.delete-scaffold-btn {
+    width: 100%;
+    padding: 13px 18px;
+
+    background: #555555;
+    border: none;
+    border-radius: 6px;
+
+    color: #ffffff;
+    text-align: center;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.delete-scaffold-btn:hover {
+    background: #b81818;
+}
+.flash-message {
+    margin-bottom: 24px;
+    padding: 14px 18px;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.flash-message.success {
+    background: rgba(46, 204, 113, 0.16);
+    border: 1px solid rgba(46, 204, 113, 0.65);
+    color: #69e89b;
+}
+
+.flash-message.warning {
+    background: rgba(255, 193, 7, 0.15);
+    border: 1px solid rgba(255, 193, 7, 0.65);
+    color: #ffd45a;
+}
 @media (max-width: 800px) {
     .admin-scaffolds-page {
         padding: 40px 18px;
