@@ -79,7 +79,10 @@
         <input type="checkbox" th:field="*{installationRequired}">
         Installation required
       </label>
-
+      <small class="error-message"
+             th:if="${orderError}"
+             th:text="${orderError}">
+      </small>
       <button type="submit" class="submit-btn">
         Submit Rent Order
       </button>

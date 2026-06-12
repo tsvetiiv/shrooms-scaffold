@@ -60,9 +60,16 @@ public class RentController {
         UserDto user = (UserDto) session.getAttribute("user");
 
         rentOrderRequest.setScaffoldId(id);
-        orderService.createRentOrder(rentOrderRequest, user);
-
-        return new ModelAndView("redirect:/orders");
+       try {
+           orderService.createRentOrder(rentOrderRequest, user);
+           return new ModelAndView("redirect:/orders");
+       } catch (RuntimeException exception){
+           ModelAndView modelAndView = new ModelAndView("rent-form");
+           modelAndView.addObject("scaffold", scaffoldService.findById(id));
+           modelAndView.addObject("rentOrderRequest", rentOrderRequest);
+           modelAndView.addObject("orderError", exception.getMessage());
+           return modelAndView;
+       }
     }
 
 }

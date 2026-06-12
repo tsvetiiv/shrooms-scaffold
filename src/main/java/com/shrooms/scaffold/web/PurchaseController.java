@@ -59,9 +59,17 @@ public class PurchaseController {
 
         purchaseOrderRequest.setScaffoldId(id);
 
-        orderService.createPurchaseOrder(purchaseOrderRequest, user);
+        try {
+            orderService.createPurchaseOrder(purchaseOrderRequest, user);
+            return new ModelAndView("redirect:/orders");
 
-        return new ModelAndView("redirect:/orders");
+        } catch (RuntimeException exception) {
+            ModelAndView modelAndView = new ModelAndView("purchase-form");
+            modelAndView.addObject("scaffold", scaffoldService.findById(id));
+            modelAndView.addObject("purchaseOrderRequest", purchaseOrderRequest);
+            modelAndView.addObject("orderError", exception.getMessage());
+            return modelAndView;
+        }
     }
 
 

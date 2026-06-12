@@ -138,7 +138,16 @@ body {
     font-weight: bold;
     box-sizing: border-box;
 }
-
+.disabled-btn {
+    background: #555555 !important;
+    color: #bbbbbb !important;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.disabled-btn:hover {
+    background: #555555 !important;
+    color: #bbbbbb !important;
+}
 .submit-btn {
     display: block;
     width: 100%;

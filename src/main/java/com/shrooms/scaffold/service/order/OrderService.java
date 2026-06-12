@@ -3,7 +3,6 @@ package com.shrooms.scaffold.service.order;
 import com.shrooms.scaffold.model.dto.order.PurchaseOrderRequest;
 import com.shrooms.scaffold.model.dto.order.RentOrderRequest;
 import com.shrooms.scaffold.model.dto.user.UserDto;
-import com.shrooms.scaffold.model.entity.customOrder.CustomOrder;
 import com.shrooms.scaffold.model.entity.order.Order;
 import com.shrooms.scaffold.model.entity.order.OrderStatus;
 import com.shrooms.scaffold.model.entity.order.OrderType;
@@ -45,6 +44,9 @@ public class OrderService {
         Scaffold scaffold = scaffoldRepository
                 .findById(request.getScaffoldId())
                 .orElseThrow();
+        if (!scaffold.isAvailable()){
+            throw new RuntimeException("The scaffold is not available");
+        }
 
         BigDecimal totalPrice = scaffold.getPriceForRent()
                 .multiply(BigDecimal.valueOf(request.getQuantity()))
@@ -74,6 +76,10 @@ public class OrderService {
         Scaffold scaffold = scaffoldRepository
                 .findById(request.getScaffoldId())
                 .orElseThrow();
+
+        if (!scaffold.isAvailable()){
+            throw new RuntimeException("The scaffold is not available");
+        }
 
         BigDecimal totalPrice = scaffold.getPriceForSale()
                 .multiply(BigDecimal.valueOf(request.getQuantity()));

@@ -40,10 +40,15 @@
                          th:text="'€' + ${scaffold.priceForRent} + ' / week'">
                     </div>
 
-                    <a th:href="@{/scaffolds/rent/{id}(id=${scaffold.id})}"
+                    <a th:if="${scaffold.available}"
+                       th:href="@{/scaffolds/rent/{id}(id=${scaffold.id})}"
                        class="rent-btn">
                         Rent This Scaffold
                     </a>
+                    <span th:if="${!scaffold.available}"
+                          class="rent-btn disabled-btn">
+                            Unavailable
+                    </span>
                 </div>
 
             </article>

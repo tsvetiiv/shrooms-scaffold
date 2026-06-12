@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Purchase Scaffold | Shrooms</title>
-    <link rel="stylesheet" href="/css/layout.css">
+    <link href="/css/layout.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/purchase.css}">
 </head>
 <body>
@@ -20,8 +20,8 @@
 
             <article class="scaffold-card" th:each="scaffold : ${scaffolds}">
 
-                <img th:src="${scaffold.imageUrl}"
-                     th:alt="${scaffold.name}">
+                <img th:alt="${scaffold.name}"
+                     th:src="${scaffold.imageUrl}">
 
                 <div class="scaffold-content">
                     <h2 th:text="${scaffold.name}">Scaffold name</h2>
@@ -40,10 +40,16 @@
                          th:text="'€' + ${scaffold.priceForSale}">
                     </div>
 
-                    <a th:href="@{/scaffolds/purchase/{id}(id=${scaffold.id})}"
-                       class="purchase-btn">
+                    <a class="purchase-btn"
+                       th:href="@{/scaffolds/purchase/{id}(id=${scaffold.id})}"
+                       th:if="${scaffold.available}">
                         Purchase This Scaffold
                     </a>
+
+                    <span class="purchase-btn disabled-btn"
+                          th:if="${!scaffold.available}">
+                            Unavailable
+                    </span>
                 </div>
 
             </article>
