@@ -1,5 +1,6 @@
 package com.shrooms.scaffold.service.order;
 
+import com.shrooms.scaffold.event.OrderStatusChangedEvent;
 import com.shrooms.scaffold.model.dto.order.PurchaseOrderRequest;
 import com.shrooms.scaffold.model.dto.order.RentOrderRequest;
 import com.shrooms.scaffold.model.dto.user.UserDto;
@@ -11,6 +12,7 @@ import com.shrooms.scaffold.model.entity.user.User;
 import com.shrooms.scaffold.repository.order.OrderRepository;
 import com.shrooms.scaffold.repository.scaffold.ScaffoldRepository;
 import com.shrooms.scaffold.repository.user.UserRepository;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -23,13 +25,15 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final ScaffoldRepository scaffoldRepository;
+    private final ApplicationEventPublisher  publisher;
 
     public OrderService(OrderRepository orderRepository,
                         UserRepository userRepository,
-                        ScaffoldRepository scaffoldRepository) {
+                        ScaffoldRepository scaffoldRepository, ApplicationEventPublisher publisher) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.scaffoldRepository = scaffoldRepository;
+        this.publisher = publisher;
     }
 
     public List<Order> getOrdersByUserId(UUID userId) {
@@ -107,5 +111,14 @@ public class OrderService {
         Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
         order.setOrderStatus(orderStatus);
         orderRepository.save(order);
+
+        OrderStatusChangedEvent event = new OrderStatusChangedEvent(
+                order.getUser().getEmail(),
+                order.getUser().getFirstName(),
+                order.getScaffold().getName(),
+                order.getOrderStatus()
+        );
+            publisher.publishEvent(event);
     }
+
 }
