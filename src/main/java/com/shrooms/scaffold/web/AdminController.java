@@ -8,15 +8,20 @@ import com.shrooms.scaffold.model.entity.order.OrderStatus;
 import com.shrooms.scaffold.model.entity.scaffold.MaterialType;
 import com.shrooms.scaffold.model.entity.scaffold.Scaffold;
 import com.shrooms.scaffold.model.entity.scaffold.ScaffoldCategory;
-import com.shrooms.scaffold.repository.scaffold.ScaffoldRepository;
 import com.shrooms.scaffold.service.customOrder.CustomOrderService;
 import com.shrooms.scaffold.service.order.OrderService;
 import com.shrooms.scaffold.service.scaffold.ScaffoldService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,13 +36,11 @@ public class AdminController {
     private final OrderService orderService;
     private final CustomOrderService customOrderService;
     private final ScaffoldService scaffoldService;
-    private final ScaffoldRepository scaffoldRepository;
 
-    public AdminController(OrderService orderService, CustomOrderService customOrderService, ScaffoldService scaffoldService, ScaffoldRepository scaffoldRepository) {
+    public AdminController(OrderService orderService, CustomOrderService customOrderService, ScaffoldService scaffoldService) {
         this.orderService = orderService;
         this.customOrderService = customOrderService;
         this.scaffoldService = scaffoldService;
-        this.scaffoldRepository = scaffoldRepository;
     }
 
     @GetMapping
@@ -110,7 +113,7 @@ public class AdminController {
     }
 
     @GetMapping("/scaffolds/create")
-    public ModelAndView getCreateScaffold(Model model) {
+    public ModelAndView getCreateScaffold() {
         ModelAndView modelAndView = new ModelAndView("admin/create-scaffold");
         modelAndView.addObject("scaffoldRequest", new ScaffoldRequest());
         modelAndView.addObject("scaffoldCategories", ScaffoldCategory.values());

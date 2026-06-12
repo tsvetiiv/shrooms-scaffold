@@ -1,4 +1,5 @@
 package com.shrooms.scaffold.web;
+
 import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.model.dto.user.UserEditProfileDto;
 import com.shrooms.scaffold.service.user.UserService;
@@ -6,7 +7,10 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -48,6 +52,7 @@ public class ProfileController {
 
         return modelAndView;
     }
+
     @PutMapping("/profile/edit")
     public String editProfile(@Valid @ModelAttribute("userEditProfileDto") UserEditProfileDto userEditProfileDto,
                               BindingResult bindingResult,

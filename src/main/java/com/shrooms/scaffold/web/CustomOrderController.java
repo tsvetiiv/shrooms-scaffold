@@ -24,10 +24,7 @@ public class CustomOrderController {
     }
 
     @GetMapping
-    public ModelAndView getCustomOrderPage(HttpSession session) {
-
-        UserDto user = (UserDto) session.getAttribute("user");
-
+    public ModelAndView getCustomOrderPage() {
         ModelAndView modelAndView = new ModelAndView("custom-order");
         modelAndView.addObject("customOrderRequest", new CustomOrderRequest());
 
@@ -53,7 +50,7 @@ public class CustomOrderController {
             ModelAndView modelAndView = new ModelAndView("custom-order");
             modelAndView.addObject("customOrderRequest", customOrderRequest);
             modelAndView.addObject("dateError", exception.getMessage());
-           modelAndView.addObject("customOrderError",exception.getMessage());
+            modelAndView.addObject("customOrderError", exception.getMessage());
             return modelAndView;
         }
     }

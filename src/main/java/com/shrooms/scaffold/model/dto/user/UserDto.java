@@ -2,7 +2,6 @@ package com.shrooms.scaffold.model.dto.user;
 
 import com.shrooms.scaffold.model.entity.order.Order;
 import com.shrooms.scaffold.model.entity.user.RoleType;
-import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 

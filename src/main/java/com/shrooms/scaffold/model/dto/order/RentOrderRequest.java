@@ -1,10 +1,13 @@
 package com.shrooms.scaffold.model.dto.order;
-;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
@@ -25,6 +28,4 @@ public class RentOrderRequest {
     @Size(min = 5, max = 150, message = "Delivery address must be between 5 and 150 characters")
     private String address;
     private boolean installationRequired;
-
-
 }

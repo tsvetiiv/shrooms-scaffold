@@ -8,7 +8,11 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.UUID;
@@ -45,9 +49,9 @@ public class PurchaseController {
 
     @PostMapping("/{id}")
     public ModelAndView purchaseScaffold(@PathVariable UUID id,
-                                  @Valid @ModelAttribute("purchaseOrderRequest") PurchaseOrderRequest purchaseOrderRequest,
-                                  BindingResult bindingResult,
-                                  HttpSession session) {
+                                         @Valid @ModelAttribute("purchaseOrderRequest") PurchaseOrderRequest purchaseOrderRequest,
+                                         BindingResult bindingResult,
+                                         HttpSession session) {
         if (bindingResult.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("purchase-form");
             modelAndView.addObject("scaffold", scaffoldService.findById(id));
@@ -71,6 +75,4 @@ public class PurchaseController {
             return modelAndView;
         }
     }
-
-
 }

@@ -5,7 +5,6 @@ import com.shrooms.scaffold.model.dto.scaffold.ScaffoldRequest;
 import com.shrooms.scaffold.model.entity.scaffold.Scaffold;
 import com.shrooms.scaffold.repository.order.OrderRepository;
 import com.shrooms.scaffold.repository.scaffold.ScaffoldRepository;
-import com.shrooms.scaffold.service.order.OrderService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
