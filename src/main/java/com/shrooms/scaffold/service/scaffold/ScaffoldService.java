@@ -5,6 +5,10 @@ import com.shrooms.scaffold.model.dto.scaffold.ScaffoldRequest;
 import com.shrooms.scaffold.model.entity.scaffold.Scaffold;
 import com.shrooms.scaffold.repository.order.OrderRepository;
 import com.shrooms.scaffold.repository.scaffold.ScaffoldRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +19,7 @@ public class ScaffoldService {
 
     private final ScaffoldRepository scaffoldRepository;
     private final OrderRepository orderRepository;
-
+    private static final Logger logger = LoggerFactory.getLogger(ScaffoldService.class);
 
     public ScaffoldService(ScaffoldRepository scaffoldRepository, OrderRepository orderRepository) {
         this.scaffoldRepository = scaffoldRepository;
@@ -27,10 +31,13 @@ public class ScaffoldService {
                 .orElseThrow();
     }
 
+    @Cacheable("scaffolds")
     public List<Scaffold> findAll() {
+        logger.info("Loading from database...");
         return scaffoldRepository.findAll();
     }
 
+    @CacheEvict(value = "scaffolds", allEntries = true)
     public void editScaffold(UUID id, ScaffoldRequest scaffoldRequest) {
         Scaffold scaffold = scaffoldRepository.findById(id).orElseThrow(()
                 -> new RuntimeException("Scaffold not found"));
@@ -47,11 +54,13 @@ public class ScaffoldService {
         return ScaffoldMapper.toScaffoldRequest(scaffold);
     }
 
+    @CacheEvict(value = "scaffolds", allEntries = true)
     public void createScaffold(ScaffoldRequest request) {
         Scaffold newScaffold = ScaffoldMapper.toScaffoldEntity(request);
         scaffoldRepository.save(newScaffold);
     }
 
+    @CacheEvict(value = "scaffolds", allEntries = true)
     public boolean deleteScaffold(UUID id) {
         Scaffold scaffoldForDelete = scaffoldRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Scaffold not found"));
