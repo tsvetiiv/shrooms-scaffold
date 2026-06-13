@@ -19,35 +19,35 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class CustomOrderRequest {
 
-    @NotNull
-    @Positive
+    @NotNull(message = "Height is required")
+    @Positive(message = "Height must be greater than 0")
     private Double height;
-    @NotNull
-    @Positive
+    @NotNull(message = "Width is required")
+    @Positive(message = "Height must be greater than 0")
     private Double width;
-    @NotNull
-    @Positive
+    @NotNull(message = "Length is required")
+    @Positive(message = "Height must be greater than 0")
     private Double length;
     @NotBlank(message = "Delivery address is required")
     @Size(min = 5, max = 150, message = "Delivery address must be between 5 and 150 characters")
     private String address;
 
     private boolean installationRequired;
-    @NotNull
+    @NotNull(message = "Start date is required")
     private LocalDate startDate;
-    @NotNull
+    @NotNull(message = "End date is required")
     private LocalDate endDate;
-    @NotBlank
-    @Size(min = 10, max = 15)
+    @NotBlank(message = "Contact phone is required")
+    @Size(min = 10, max = 15, message = "Contact phone must be between 10 and 15 characters")
     private String contactPhone;
-    @NotBlank
-    @Size(min = 20, max = 150)
+    @NotBlank(message = "Project description is required")
+    @Size(min = 20, max = 150, message = "Project description must be between 20 and 150 characters")
     private String projectDescription;
-    @NotBlank
-    @Size(min = 3, max = 80)
+    @NotBlank(message = "Project name is required")
+    @Size(min = 3, max = 80, message = "Project name must be between 3 and 80 characters")
     private String projectName;
-    @Size(max = 500)
+    @Size(max = 500, message = "Project image URL must be up to 500 characters")
     private String projectImage;
-    @NotNull
+    @NotNull(message = "Request type is required")
     private OrderType orderType;
 }

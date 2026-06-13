@@ -32,15 +32,15 @@ public class ScaffoldRequest {
     private double length;
     @NotNull(message = "Material type is required")
     private MaterialType materialType;
-    @NotNull
+    @NotNull(message = "Scaffold category is required")
     private ScaffoldCategory scaffoldCategory;
-    @NotNull
-    @Positive
+    @NotNull(message = "Price for rent is required")
+    @Positive(message = "Price for rent must be greater than 0")
     private BigDecimal priceForRent;
-    @NotNull
-    @Positive
+    @NotNull (message = "Price for sale is required")
+    @Positive(message = "Price for sale must be greater than 0")
     private BigDecimal priceForSale;
-    @Size(max = 500)
+    @Size(max = 500,message = "Image URL must be up to 500 characters")
     private String imageUrl;
     private boolean available;
 

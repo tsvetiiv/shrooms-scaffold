@@ -14,11 +14,11 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserEditProfileDto {
-    @NotBlank
-    @Size(min = 2, max = 20)
+    @NotBlank(message = "First name is required")
+    @Size(min = 2, max = 20, message = "First name must be between 2 and 20 characters")
     private String firstName;
-    @NotBlank
-    @Size(min = 2, max = 20)
+    @NotBlank(message = "Last name is required")
+    @Size(min = 2, max = 20, message = "Last name must be between 2 and 20 characters")
     private String lastName;
     @Size(max=500, message = "Profile picture URL must be up to 500 characters")
     private String profilePicture;
