@@ -21,7 +21,7 @@ public class CustomOrderService {
     private final UserRepository userRepository;
     private final CustomOrderRepository customOrderRepository;
 
-    public CustomOrderService( UserRepository userRepository, CustomOrderRepository customOrderRepository) {
+    public CustomOrderService(UserRepository userRepository, CustomOrderRepository customOrderRepository) {
         this.userRepository = userRepository;
         this.customOrderRepository = customOrderRepository;
     }
@@ -69,7 +69,7 @@ public class CustomOrderService {
         return customOrderRepository.findAllByOrderByCreatedOnDesc();
     }
 
-    public void updateCustomOrder (UUID customOrderId,RequestStatus requestStatus, BigDecimal estimatedPrice) {
+    public void updateCustomOrder(UUID customOrderId, RequestStatus requestStatus, BigDecimal estimatedPrice) {
         CustomOrder customOrder = customOrderRepository.findById(customOrderId).orElseThrow(() -> new RuntimeException("Custom order not found"));
         customOrder.setRequestStatus(requestStatus);
         customOrder.setEstimatedPrice(estimatedPrice);
