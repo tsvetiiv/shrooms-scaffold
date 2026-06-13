@@ -61,7 +61,8 @@
 
                         <form th:action="@{/admin/scaffolds/{id}(id=${scaffold.id})}"
                               method="post"
-                              class="delete-scaffold-form">
+                              class="delete-scaffold-form"
+                              onsubmit="return confirm('Are you sure you want to delete this scaffold?');">
                             <input type="hidden" name="_method" value="delete">
 
                             <button type="submit" class="delete-scaffold-btn">
