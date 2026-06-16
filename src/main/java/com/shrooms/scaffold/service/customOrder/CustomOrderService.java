@@ -4,6 +4,7 @@ import com.shrooms.scaffold.model.dto.order.CustomOrderRequest;
 import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.model.entity.customOrder.CustomOrder;
 import com.shrooms.scaffold.model.entity.customOrder.RequestStatus;
+import com.shrooms.scaffold.model.entity.order.OrderType;
 import com.shrooms.scaffold.model.entity.user.User;
 import com.shrooms.scaffold.repository.customRequest.CustomOrderRepository;
 import com.shrooms.scaffold.repository.user.UserRepository;
@@ -31,15 +32,22 @@ public class CustomOrderService {
     }
 
     public void createCustomOrder(CustomOrderRequest customRequest, UserDto userDto) {
-        if (customRequest.getStartDate().isBefore(LocalDate.now())) {
-            throw new RuntimeException(
-                    "Start date cannot be in the past.");
-        }
 
-        if (customRequest.getEndDate().isBefore(customRequest.getStartDate())) {
-            throw new RuntimeException("End date cannot be before start date.");
+        if (OrderType.RENT.equals(customRequest.getOrderType())) {
+            if (customRequest.getStartDate() == null) {
+                throw new RuntimeException("Start date is required");
+            }
+            if (customRequest.getEndDate() == null) {
+                throw new RuntimeException("End date is required");
+            }
+            if (customRequest.getStartDate().isBefore(LocalDate.now())) {
+                throw new RuntimeException(
+                        "Start date cannot be in the past.");
+            }
+            if (customRequest.getEndDate().isBefore(customRequest.getStartDate())) {
+                throw new RuntimeException("End date cannot be before start date.");
+            }
         }
-
 
         User user = userRepository
                 .findById(userDto.getId())
@@ -49,6 +57,7 @@ public class CustomOrderService {
                 .user(user)
                 .projectName(customRequest.getProjectName())
                 .description(customRequest.getProjectDescription())
+                .projectImage(customRequest.getProjectImage())
                 .height(customRequest.getHeight())
                 .width(customRequest.getWidth())
                 .length(customRequest.getLength())
@@ -70,7 +79,14 @@ public class CustomOrderService {
     }
 
     public void updateCustomOrder(UUID customOrderId, RequestStatus requestStatus, BigDecimal estimatedPrice) {
-        CustomOrder customOrder = customOrderRepository.findById(customOrderId).orElseThrow(() -> new RuntimeException("Custom order not found"));
+        CustomOrder customOrder = customOrderRepository.findById(customOrderId)
+                .orElseThrow(() -> new RuntimeException("Custom order not found"));
+
+        if (RequestStatus.APPROVED.equals(customOrder.getRequestStatus()) ||
+                RequestStatus.REJECTED.equals(customOrder.getRequestStatus())) {
+            throw new RuntimeException("This custom request has already been finalized.");
+        }
+
         customOrder.setRequestStatus(requestStatus);
         customOrder.setEstimatedPrice(estimatedPrice);
         customOrderRepository.save(customOrder);

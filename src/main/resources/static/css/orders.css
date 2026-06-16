@@ -164,10 +164,10 @@ img {
 }
 
 .orders-table {
-    width: 100%;
-    min-width: 900px;
+    width: max-content;
+    min-width: 100%;
     border-collapse: collapse;
-    table-layout: fixed;
+    table-layout: auto;
 
     overflow: hidden;
     border-radius: 10px;
@@ -242,9 +242,21 @@ img {
 }
 
 .orders-table tbody td:nth-child(4),
-.orders-table tbody td:nth-child(5),
-.orders-table tbody td:nth-child(6) {
+.orders-table tbody td:nth-child(5) {
     font-variant-numeric: tabular-nums;
+}
+
+.orders-table {
+    min-width: 1120px;
+}
+
+.orders-table th:nth-child(6),
+.orders-table td:nth-child(6) {
+    min-width: 220px;
+    max-width: 260px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: left;
 }
 
 .orders-table tbody td:last-child {
@@ -342,6 +354,88 @@ small {
     border: 1px solid rgba(214, 31, 31, 0.75);
     color: #ff7777;
 }
+.orders-table tbody tr.final-order {
+    opacity: 0.55;
+    background: rgba(120, 120, 120, 0.14) !important;
+}
+
+.orders-table tbody tr.final-order:hover {
+    background: rgba(120, 120, 120, 0.20) !important;
+}
+
+.empty-orders-message {
+    margin: 16px 0 0;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    color: var(--color-text-muted);
+    font-style: italic;
+    text-align: center;
+}
+
+.custom-orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 22px;
+}
+
+.custom-order-card {
+    padding: 22px;
+
+    background: rgba(12, 14, 14, 0.94);
+    border: 1px solid rgba(214, 31, 31, 0.3);
+    border-radius: 10px;
+    box-shadow: var(--shadow-soft);
+}
+
+.custom-order-card.final-custom-request {
+    opacity: 0.65;
+    background: rgba(120, 120, 120, 0.14);
+}
+
+.custom-order-card h2 {
+    margin: 0 0 16px;
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.detail-row {
+    display: grid;
+    grid-template-columns: 125px minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.detail-row > span:first-child {
+    color: var(--color-text-muted);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.detail-row strong {
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+.detail-row a {
+    color: #72c7ff;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.detail-row a:hover {
+    color: #ffffff;
+}
+
 button {
     width: 100%;
     margin-top: 10px;
@@ -359,4 +453,3 @@ button {
 button:hover {
     background: #e32626;
 }
-

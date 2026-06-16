@@ -33,9 +33,7 @@ public class CustomOrderRequest {
     private String address;
 
     private boolean installationRequired;
-    @NotNull(message = "Start date is required")
     private LocalDate startDate;
-    @NotNull(message = "End date is required")
     private LocalDate endDate;
     @NotBlank(message = "Contact phone is required")
     @Size(min = 10, max = 15, message = "Contact phone must be between 10 and 15 characters")

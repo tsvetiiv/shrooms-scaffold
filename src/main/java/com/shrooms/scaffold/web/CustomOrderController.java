@@ -50,7 +50,6 @@ public class CustomOrderController {
             ModelAndView modelAndView = new ModelAndView("custom-order");
             modelAndView.addObject("customOrderRequest", customOrderRequest);
             modelAndView.addObject("dateError", exception.getMessage());
-            modelAndView.addObject("customOrderError", exception.getMessage());
             return modelAndView;
         }
     }

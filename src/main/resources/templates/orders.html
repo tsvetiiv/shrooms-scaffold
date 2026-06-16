@@ -18,92 +18,145 @@
         <h2>Rent & Purchase Orders</h2>
 
         <div class="table-responsive">
-        <table class="orders-table">
-            <thead>
-            <tr>
-                <th>Scaffold</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Created On</th>
-                <th>Quantity</th>
-                <th>Total Price</th>
-            </tr>
-            </thead>
+            <table class="orders-table">
+                <thead>
+                <tr>
+                    <th>Scaffold</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Quantity</th>
+                    <th>Rental Weeks</th>
+                    <th>Address</th>
+                    <th>Total Price</th>
+                    <th>Created On</th>
+                </tr>
+                </thead>
 
-            <tbody>
-            <tr th:if="${#lists.isEmpty(orders)}">
-                <td colspan="6">No rent or purchase orders yet.</td>
-            </tr>
+                <tbody>
+                <tr th:if="${#lists.isEmpty(orders)}">
+                    <td colspan="8">No rent or purchase orders yet.</td>
+                </tr>
 
-            <tr th:each="order : ${orders}">
-                <td th:text="${order.scaffold.name}">Scaffold</td>
-                <td th:text="${order.orderType}">Type</td>
-                <td>
+                <tr th:each="order : ${orders}"
+                    th:classappend="${order.orderStatus.name() == 'COMPLETED' or order.orderStatus.name() == 'CANCELLED'} ? 'final-order' : ''">
+                    <td th:text="${order.scaffold.name}">Scaffold</td>
+                    <td th:text="${order.orderType}">Type</td>
+                    <td>
     <span class="status-badge"
           th:classappend="${order.orderStatus.name().toLowerCase()}"
           th:text="${order.orderStatus}">
         Status
     </span>
-                </td>
-                <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">Created</td>
-                <td th:text="${order.quantity}">Quantity</td>
-                <td th:text="${order.totalPrice}">Price</td>
-            </tr>
-            </tbody>
-        </table>
+                    </td>
+                    <td th:text="${order.quantity}">Quantity</td>
+                    <td th:text="${order.rentalWeeks != null ? order.rentalWeeks : '-'}">Weeks</td>
+                    <td th:text="${order.address}">Address</td>
+                    <td th:text="${order.totalPrice + ' €'}">Price</td>
+                    <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">Created On</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
         <h2 class="custom-title">Custom Requests</h2>
 
-        <div class="table-responsive">
-        <table class="orders-table">
-            <thead>
-            <tr>
-                <th>Project</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Dimensions</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Created On</th>
-                <th>Price</th>
-            </tr>
-            </thead>
+        <p class="empty-orders-message"
+           th:if="${#lists.isEmpty(customOrders)}">
+            No custom requests yet.
+        </p>
 
-            <tbody>
-            <tr th:if="${#lists.isEmpty(customOrders)}">
-                <td colspan="8">No custom requests yet.</td>
-            </tr>
+        <div class="custom-orders-grid">
+            <article class="custom-order-card"
+                     th:each="customOrder : ${customOrders}"
+                     th:classappend="${customOrder.requestStatus.name() == 'APPROVED' or customOrder.requestStatus.name() == 'REJECTED'} ? 'final-custom-request' : ''">
+                <h2 th:text="${customOrder.projectName}">Project</h2>
 
-            <tr th:each="customOrder : ${customOrders}">
-                <td th:text="${customOrder.projectName}">Project</td>
-                <td th:text="${customOrder.orderType}">Type</td>
-                <td>
-    <span class="status-badge"
-          th:classappend="${customOrder.requestStatus.name().toLowerCase()}"
-          th:text="${customOrder.requestStatus}">
-        Status
-    </span>
-                </td>
-                <td>
-                    <span th:text="${customOrder.height}">0</span>m ×
-                    <span th:text="${customOrder.width}">0</span>m ×
-                    <span th:text="${customOrder.length}">0</span>m
-                </td>
-                <td th:text="${customOrder.startDate}">Start</td>
-                <td th:text="${customOrder.endDate}">End</td>
-                <td th:text="${#temporals.format(customOrder.createdOn, 'dd.MM.yyyy HH:mm')}">Created</td>
-                <td>
-    <span th:if="${customOrder.estimatedPrice != null}"
-          th:text="${customOrder.estimatedPrice + ' €'}">
-    </span>
-                    <span th:if="${customOrder.estimatedPrice == null}">
-        Awaiting admin quotation
-    </span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                <div class="detail-row">
+                    <span>Description</span>
+                    <strong th:text="${customOrder.description}">Description</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Image</span>
+                    <strong>
+                        <a th:if="${customOrder.projectImage != null and !customOrder.projectImage.isBlank()}"
+                           th:href="${customOrder.projectImage}"
+                           target="_blank">
+                            View image
+                        </a>
+                        <span th:if="${customOrder.projectImage == null or customOrder.projectImage.isBlank()}">
+                            -
+                        </span>
+                    </strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Type</span>
+                    <strong th:text="${customOrder.orderType}">Type</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Status</span>
+                    <strong>
+                        <span class="status-badge"
+                              th:classappend="${customOrder.requestStatus.name().toLowerCase()}"
+                              th:text="${customOrder.requestStatus}">
+                            Status
+                        </span>
+                    </strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Dimensions</span>
+                    <strong>
+                        <span th:text="${customOrder.height}">0</span>m ×
+                        <span th:text="${customOrder.width}">0</span>m ×
+                        <span th:text="${customOrder.length}">0</span>m
+                    </strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Address</span>
+                    <strong th:text="${customOrder.address}">Address</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Installation</span>
+                    <strong th:text="${customOrder.installationRequired ? 'Yes' : 'No'}">Installation</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Phone</span>
+                    <strong th:text="${customOrder.contactPhone}">Phone</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Start Date</span>
+                    <strong th:text="${customOrder.startDate != null ? customOrder.startDate : '-'}">Start</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>End Date</span>
+                    <strong th:text="${customOrder.endDate != null ? customOrder.endDate : '-'}">End</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Price</span>
+                    <strong>
+                        <span th:if="${customOrder.estimatedPrice != null}"
+                              th:text="${customOrder.estimatedPrice + ' €'}">
+                        </span>
+                        <span th:if="${customOrder.estimatedPrice == null}">
+                            Awaiting admin quotation
+                        </span>
+                    </strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Created On</span>
+                    <strong th:text="${#temporals.format(customOrder.createdOn, 'dd.MM.yyyy HH:mm')}">Created On</strong>
+                </div>
+            </article>
         </div>
 
     </section>

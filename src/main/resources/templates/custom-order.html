@@ -94,6 +94,18 @@
                 </small>
             </div>
             <div class="form-group">
+                <label for="projectImage">Project image URL</label>
+                <input id="projectImage"
+                       type="text"
+                       th:field="*{projectImage}"
+                       placeholder="Optional image URL">
+
+                <small class="error-message"
+                       th:if="${#fields.hasErrors('projectImage')}"
+                       th:errors="*{projectImage}">
+                </small>
+            </div>
+            <div class="form-group">
                 <label for="orderType">Request type</label>
                 <select id="orderType" th:field="*{orderType}">
                     <option value="">Select request type</option>
@@ -105,34 +117,29 @@
                        th:errors="*{orderType}">
                 </small>
             </div>
-            <small class="error-message"
-                   th:if="${customOrderError}"
-                   th:text="${customOrderError}">
-            </small>
+            <div class="date-section" id="dateSection">
+                <div class="date-row">
+                    <div class="form-group">
+                        <label for="startDate">Start date</label>
+                        <input id="startDate"
+                               name="startDate"
+                               type="date"
+                               th:value="${customOrderRequest.startDate}">
+                    </div>
 
-            <div class="date-row">
-                <div class="form-group">
-                    <label for="startDate">Start date</label>
-                    <input id="startDate" type="date" th:field="*{startDate}">
-                    <small class="error-message"
-                           th:if="${#fields.hasErrors('endDate')}"
-                           th:errors="*{endDate}">
-                    </small>
+                    <div class="form-group">
+                        <label for="endDate">End date</label>
+                        <input id="endDate"
+                               name="endDate"
+                               type="date"
+                               th:value="${customOrderRequest.endDate}">
+                    </div>
                 </div>
 
-                <small class="error-message"
+                <small class="error-message date-error"
                        th:if="${dateError}"
                        th:text="${dateError}">
                 </small>
-
-                <div class="form-group">
-                    <label for="endDate">End date</label>
-                    <input id="endDate" type="date" th:field="*{endDate}">
-                    <small class="error-message"
-                           th:if="${#fields.hasErrors('endDate')}"
-                           th:errors="*{endDate}">
-                    </small>
-                </div>
             </div>
 
             <label class="checkbox-row">
@@ -149,6 +156,29 @@
 </main>
 
 <div th:insert="~{fragments/common/footer :: footer}"></div>
+
+<script>
+    const orderTypeSelect = document.getElementById('orderType');
+    const dateSection = document.getElementById('dateSection');
+    const startDateInput = document.getElementById('startDate');
+    const endDateInput = document.getElementById('endDate');
+
+    function toggleDateFields() {
+        const isPurchase = orderTypeSelect.value === 'PURCHASE';
+
+        startDateInput.disabled = isPurchase;
+        endDateInput.disabled = isPurchase;
+        dateSection.style.display = isPurchase ? 'none' : 'block';
+
+        if (isPurchase) {
+            startDateInput.value = '';
+            endDateInput.value = '';
+        }
+    }
+
+    orderTypeSelect.addEventListener('change', toggleDateFields);
+    toggleDateFields();
+</script>
 
 </body>
 </html>

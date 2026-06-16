@@ -1,109 +1,146 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Custom Requests | Shrooms</title>
-  <link rel="stylesheet" href="/css/layout.css">
-  <link rel="stylesheet" href="/css/admin-orders.css">
+    <meta charset="UTF-8">
+    <title>Admin Custom Requests | Shrooms</title>
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/admin-orders.css">
 </head>
 <body>
 
 <div th:insert="~{fragments/common/header :: header}"></div>
 
 <main class="admin-orders-page">
-  <section class="admin-orders-panel">
+    <section class="admin-orders-panel">
 
-    <div class="admin-page-heading">
-      <h1>Custom Requests</h1>
-      <a th:href="@{/admin}" class="back-admin-link">Back to Dashboard</a>
-    </div>
+        <div class="admin-page-heading">
+            <h1>Custom Requests</h1>
+            <a th:href="@{/admin}" class="back-admin-link">Back to Dashboard</a>
+        </div>
 
-    <div class="red-line"></div>
+        <div class="red-line"></div>
 
-    <div class="table-responsive">
-      <table class="admin-orders-table">
-        <thead>
-        <tr>
-          <th>Project</th>
-          <th>Customer</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Type</th>
-          <th>Status</th>
-          <th>Dimensions</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Created On</th>
-          <th>Estimated Price</th>
-          <th>Action</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr th:if="${#lists.isEmpty(customOrders)}">
-          <td colspan="12">No custom requests yet.</td>
-        </tr>
-
-        <tr th:each="customOrder : ${customOrders}">
-          <td th:text="${customOrder.projectName}">project</td>
-          <td th:text="${customOrder.user.username}">customer</td>
-          <td th:text="${customOrder.user.email}">email</td>
-          <td th:text="${customOrder.contactPhone}">phone</td>
-          <td th:text="${customOrder.orderType}">type</td>
-          <td>
-    <span class="status-badge"
-          th:classappend="${customOrder.requestStatus.name().toLowerCase()}"
-          th:text="${customOrder.requestStatus}">
-        status
-    </span>
-          </td>
-          <td>
-            <span th:text="${customOrder.height}">0</span>m ×
-            <span th:text="${customOrder.width}">0</span>m ×
-            <span th:text="${customOrder.length}">0</span>m
-          </td>
-          <td th:text="${customOrder.startDate}">start</td>
-          <td th:text="${customOrder.endDate}">end</td>
-          <td th:text="${#temporals.format(customOrder.createdOn, 'dd.MM.yyyy HH:mm')}">created</td>
-          <td>
+        <p class="empty-admin-message"
+           th:if="${#lists.isEmpty(customOrders)}">
+            No custom requests yet.
+        </p>
+        <div class="admin-custom-grid">
+            <article class="admin-custom-card"
+                     th:classappend="${customOrder.requestStatus.name() == 'APPROVED' or customOrder.requestStatus.name() == 'REJECTED'} ? 'final-custom-request' : ''"
+                     th:each="customOrder : ${customOrders}">
+                <h2 th:text="${customOrder.projectName}">Project</h2>
+                <div class="detail-row">
+                    <span>Description</span>
+                    <strong th:text="${customOrder.description}">description</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Image</span>
+                    <strong>
+                        <a th:if="${customOrder.projectImage != null and !customOrder.projectImage.isBlank()}"
+                           th:href="${customOrder.projectImage}"
+                           target="_blank">
+                            View image
+                        </a>
+                        <span th:if="${customOrder.projectImage == null or customOrder.projectImage.isBlank()}">-</span>
+                    </strong>
+                </div>
+                <div class="detail-row">
+                    <span>Customer</span>
+                    <strong th:text="${customOrder.user.username}">customer</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Email</span>
+                    <strong th:text="${customOrder.user.email}">email</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Phone</span>
+                    <strong th:text="${customOrder.contactPhone}">phone</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Type</span>
+                    <strong th:text="${customOrder.orderType}">type</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Status</span>
+                    <strong>
+                        <span class="status-badge"
+                              th:classappend="${customOrder.requestStatus.name().toLowerCase()}"
+                              th:text="${customOrder.requestStatus}">
+                        </span>
+                    </strong>
+                </div>
+                <div class="detail-row">
+                    <span>Dimensions</span>
+                    <strong>
+                        <span th:text="${customOrder.height}">0</span>m ×
+                        <span th:text="${customOrder.width}">0</span>m ×
+                        <span th:text="${customOrder.length}">0</span>m
+                    </strong>
+                </div>
+                <div class="detail-row">
+                    <span>Address</span>
+                    <strong th:text="${customOrder.address}">address</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Installation</span>
+                    <strong th:text="${customOrder.installationRequired ? 'Yes' : 'No'}">installation</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Start Date</span>
+                    <strong th:text="${customOrder.startDate != null ? customOrder.startDate : '-'}">start</strong>
+                </div>
+                <div class="detail-row">
+                    <span>End Date</span>
+                    <strong th:text="${customOrder.endDate != null ? customOrder.endDate : '-'}">end</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Created On</span>
+                    <strong th:text="${#temporals.format(customOrder.createdOn, 'dd.MM.yyyy HH:mm')}">created</strong>
+                </div>
+                <div class="detail-row">
+                    <span>Estimated Price</span>
+                    <strong>
                         <span th:if="${customOrder.estimatedPrice != null}"
                               th:text="${customOrder.estimatedPrice + ' €'}">
                         </span>
-            <span th:if="${customOrder.estimatedPrice == null}">
+                        <span th:if="${customOrder.estimatedPrice == null}">
                             Awaiting quote
                         </span>
-          </td>
-          <td>
-            <form th:action="@{/admin/custom-orders/{id}(id=${customOrder.id})}"
-                  method="post"
-                  class="status-form">
-              <input type="hidden" name="_method" value="put">
+                    </strong>
+                </div>
+                <form th:if="${customOrder.requestStatus.name() != 'REJECTED' and customOrder.requestStatus.name() != 'APPROVED'}"
+                      th:action="@{/admin/custom-orders/{id}(id=${customOrder.id})}"
+                      method="post"
+                      class="status-form admin-custom-action-form">
+                    <input type="hidden" name="_method" value="put">
 
-              <input type="number"
-                     name="estimatedPrice"
-                     class="price-input"
-                     step="0.01"
-                     min="0"
-                     th:value="${customOrder.estimatedPrice}"
-                     placeholder="Price">
+                    <input type="number"
+                           name="estimatedPrice"
+                           class="price-input"
+                           step="0.01"
+                           min="0"
+                           th:value="${customOrder.estimatedPrice}"
+                           placeholder="Price">
 
-              <select name="requestStatus" class="status-select">
-                <option th:each="status : ${T(com.shrooms.scaffold.model.entity.customOrder.RequestStatus).values()}"
-                        th:value="${status}"
-                        th:text="${status}"
-                        th:selected="${status == customOrder.requestStatus}">
-                </option>
-              </select>
+                    <select name="requestStatus" class="status-select">
+                        <option th:each="status : ${T(com.shrooms.scaffold.model.entity.customOrder.RequestStatus).values()}"
+                                th:value="${status}"
+                                th:text="${status}"
+                                th:selected="${status == customOrder.requestStatus}">
+                        </option>
+                    </select>
 
-              <button type="submit" class="status-update-btn">Update</button>
-            </form>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
+                    <button type="submit" class="status-update-btn">Update</button>
+                </form>
 
-  </section>
+                <span th:if="${customOrder.requestStatus.name() == 'APPROVED' or customOrder.requestStatus.name() == 'REJECTED'}"
+                      class="final-status-label admin-custom-final-label">
+                     Final
+                </span>
+            </article>
+        </div>
+
+    </section>
 </main>
 
 <div th:insert="~{fragments/common/footer :: footer}"></div>

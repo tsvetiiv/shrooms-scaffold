@@ -21,7 +21,7 @@
         <div class="red-line"></div>
 
         <div class="table-responsive">
-            <table class="admin-orders-table">
+            <table class="admin-orders-table admin-rent-purchase-table">
                 <thead>
                 <tr>
                     <th>Customer</th>
@@ -30,6 +30,9 @@
                     <th>Type</th>
                     <th>Status</th>
                     <th>Quantity</th>
+                    <th>Rental Weeks</th>
+                    <th>Address</th>
+                    <th>Installation</th>
                     <th>Total Price</th>
                     <th>Created On</th>
                     <th>Action</th>
@@ -38,10 +41,11 @@
 
                 <tbody>
                 <tr th:if="${#lists.isEmpty(orders)}">
-                    <td colspan="9">No orders yet.</td>
+                    <td colspan="12">No orders yet.</td>
                 </tr>
 
-                <tr th:each="order : ${orders}">
+                <tr th:each="order : ${orders}"
+                    th:classappend="${order.orderStatus.name() == 'COMPLETED' or order.orderStatus.name() == 'CANCELLED'} ? 'final-order' : ''">
                     <td th:text="${order.user.username}">customer</td>
                     <td th:text="${order.user.email}">email</td>
                     <td th:text="${order.scaffold.name}">scaffold</td>
@@ -54,11 +58,18 @@
     </span>
                     </td>
                     <td th:text="${order.quantity}">quantity</td>
+                    <td th:text="${order.rentalWeeks != null ? order.rentalWeeks : '-'}">rental weeks</td>
+                    <td th:text="${order.address}">address</td>
+                    <td th:text="${order.installationRequired ? 'Yes' : 'No'}">installation</td>
                     <td th:text="${order.totalPrice + ' €'}">price</td>
                     <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">created</td>
                     <td>
-                        <form th:action="@{/admin/orders/{id}/status(id=${order.id})}" method="post" class="status-form">
+                        <form th:if="${order.orderStatus.name() != 'COMPLETED' and order.orderStatus.name() != 'CANCELLED'}"
+                              th:action="@{/admin/orders/{id}/status(id=${order.id})}"
+                              method="post"
+                              class="status-form">
                             <input type="hidden" name="_method" value="put">
+
                             <select name="orderStatus" class="status-select">
                                 <option th:each="status : ${T(com.shrooms.scaffold.model.entity.order.OrderStatus).values()}"
                                         th:value="${status}"
@@ -69,6 +80,11 @@
 
                             <button type="submit" class="status-update-btn">Update</button>
                         </form>
+
+                        <span th:if="${order.orderStatus.name() == 'COMPLETED' or order.orderStatus.name() == 'CANCELLED'}"
+                              class="final-status-label">
+                                     Final
+                                    </span>
                     </td>
                 </tr>
                 </tbody>

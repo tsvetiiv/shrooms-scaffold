@@ -19,13 +19,14 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+
 @Service
 public class OrderService {
 
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final ScaffoldRepository scaffoldRepository;
-    private final ApplicationEventPublisher  publisher;
+    private final ApplicationEventPublisher publisher;
 
     public OrderService(OrderRepository orderRepository,
                         UserRepository userRepository,
@@ -48,7 +49,7 @@ public class OrderService {
         Scaffold scaffold = scaffoldRepository
                 .findById(request.getScaffoldId())
                 .orElseThrow();
-        if (!scaffold.isAvailable()){
+        if (!scaffold.isAvailable()) {
             throw new RuntimeException("The scaffold is not available");
         }
 
@@ -81,7 +82,7 @@ public class OrderService {
                 .findById(request.getScaffoldId())
                 .orElseThrow();
 
-        if (!scaffold.isAvailable()){
+        if (!scaffold.isAvailable()) {
             throw new RuntimeException("The scaffold is not available");
         }
 
@@ -109,6 +110,11 @@ public class OrderService {
 
     public void updateOrderStatus(UUID orderId, OrderStatus orderStatus) {
         Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+
+        if (order.getOrderStatus().equals(OrderStatus.COMPLETED) || order.getOrderStatus().equals(OrderStatus.CANCELLED)) {
+            throw new RuntimeException("Final orders cannot be updated.");
+        }
+
         order.setOrderStatus(orderStatus);
         orderRepository.save(order);
 
@@ -118,7 +124,7 @@ public class OrderService {
                 order.getScaffold().getName(),
                 order.getOrderStatus()
         );
-            publisher.publishEvent(event);
+        publisher.publishEvent(event);
     }
 
 }
