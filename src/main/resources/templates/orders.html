@@ -27,6 +27,8 @@
                     <th>Quantity</th>
                     <th>Rental Weeks</th>
                     <th>Address</th>
+                    <th>Phone</th>
+                    <th>Installation</th>
                     <th>Total Price</th>
                     <th>Created On</th>
                 </tr>
@@ -34,11 +36,11 @@
 
                 <tbody>
                 <tr th:if="${#lists.isEmpty(orders)}">
-                    <td colspan="8">No rent or purchase orders yet.</td>
+                    <td colspan="10">No rent or purchase orders yet.</td>
                 </tr>
 
                 <tr th:each="order : ${orders}"
-                    th:classappend="${order.orderStatus.name() == 'COMPLETED' or order.orderStatus.name() == 'CANCELLED'} ? 'final-order' : ''">
+                    th:classappend="${order.orderStatus.name() == 'APPROVED' or order.orderStatus.name() == 'CANCELLED'} ? 'final-order' : ''">
                     <td th:text="${order.scaffold.name}">Scaffold</td>
                     <td th:text="${order.orderType}">Type</td>
                     <td>
@@ -51,6 +53,8 @@
                     <td th:text="${order.quantity}">Quantity</td>
                     <td th:text="${order.rentalWeeks != null ? order.rentalWeeks : '-'}">Weeks</td>
                     <td th:text="${order.address}">Address</td>
+                    <td th:text="${order.contactPhone}">Phone</td>
+                    <td th:text="${order.installationRequired ? 'Yes' : 'No'}">Installation</td>
                     <td th:text="${order.totalPrice + ' €'}">Price</td>
                     <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">Created On</td>
                 </tr>

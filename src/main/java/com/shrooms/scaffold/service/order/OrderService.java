@@ -67,6 +67,7 @@ public class OrderService {
                 .rentalWeeks(request.getRentalWeeks())
                 .createdOn(LocalDateTime.now())
                 .installationRequired(request.isInstallationRequired())
+                .contactPhone(request.getContactPhone())
                 .totalPrice(totalPrice)
                 .build();
 
@@ -98,6 +99,7 @@ public class OrderService {
                 .quantity(request.getQuantity())
                 .createdOn(LocalDateTime.now())
                 .installationRequired(request.isInstallationRequired())
+                .contactPhone(request.getContactPhone())
                 .totalPrice(totalPrice)
                 .build();
 
@@ -111,7 +113,7 @@ public class OrderService {
     public void updateOrderStatus(UUID orderId, OrderStatus orderStatus) {
         Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
 
-        if (order.getOrderStatus().equals(OrderStatus.COMPLETED) || order.getOrderStatus().equals(OrderStatus.CANCELLED)) {
+        if (order.getOrderStatus().equals(OrderStatus.APPROVED) || order.getOrderStatus().equals(OrderStatus.CANCELLED)) {
             throw new RuntimeException("Final orders cannot be updated.");
         }
 

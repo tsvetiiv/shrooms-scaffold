@@ -75,14 +75,29 @@
         </small>
       </div>
 
+      <div class="form-group">
+        <label for="phone">Contact Phone</label>
+        <input id="phone"
+               type="text"
+               th:field="*{contactPhone}"
+               placeholder="Enter contact phone">
+        <small class="error-message"
+               th:if="${#fields.hasErrors('contactPhone')}"
+               th:errors="*{contactPhone}">
+        </small>
+      </div>
+
       <label class="checkbox-row">
         <input type="checkbox" th:field="*{installationRequired}">
-        Installation required
+        Installation required (included in the price)
       </label>
       <small class="error-message"
              th:if="${orderError}"
              th:text="${orderError}">
       </small>
+      <p class="payment-note">
+        Payment is made on delivery after your order is approved.
+      </p>
       <button type="submit" class="submit-btn">
         Submit Rent Order
       </button>

@@ -53,6 +53,7 @@ public class Order {
     @Column(nullable = false)
     private BigDecimal totalPrice;
 
-
+    @Column(nullable = false)
+    private String contactPhone;
 
 }
