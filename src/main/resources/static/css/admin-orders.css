@@ -108,7 +108,7 @@ body {
 }
 
 .admin-rent-purchase-table {
-    min-width: 1900px;
+    min-width: 1200px;
 }
 
 .admin-custom-orders-table {
@@ -193,7 +193,7 @@ body {
 
 .admin-orders-table th:nth-child(9),
 .admin-orders-table td:nth-child(9) {
-    width: 230px;
+    width: 120px;
 }
 
 .admin-rent-purchase-table th:nth-child(8),
@@ -315,12 +315,6 @@ body {
 }
 
 .status-badge.approved {
-    background: rgba(54, 162, 235, 0.18);
-    border: 1px solid rgba(54, 162, 235, 0.65);
-    color: #72c7ff;
-}
-
-.status-badge.completed {
     background: rgba(46, 204, 113, 0.18);
     border: 1px solid rgba(46, 204, 113, 0.7);
     color: #69e89b;

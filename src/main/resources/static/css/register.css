@@ -104,11 +104,12 @@ body {
 .form-group small {
     display: block;
 
-    margin-top: 7px;
+    margin: 7px 0 0;
 
     color: #ff4b4b;
 
     font-size: 13px;
+    text-align: left;
 }
 
 button {

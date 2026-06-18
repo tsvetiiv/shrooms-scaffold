@@ -78,12 +78,14 @@ body {
     box-shadow: 0 0 12px rgba(214,31,31,0.4);
 }
 
-small {
+.form-group small,
+.form-group .error {
     display: block;
-    margin-bottom: 18px;
+    margin: 8px 0 0;
     color: #ff4b4b;
-    text-align: center;
+    text-align: left;
     font-size: 14px;
+    font-weight: 600;
 }
 
 button {

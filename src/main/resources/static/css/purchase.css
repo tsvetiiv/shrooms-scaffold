@@ -242,6 +242,17 @@ body {
     accent-color: #d61f1f;
 }
 
+.payment-note {
+    margin: 6px 0 0;
+    padding: 12px 14px;
+    background: rgba(214,31,31,0.12);
+    border: 1px solid rgba(214,31,31,0.32);
+    border-radius: 8px;
+    color: #e8e8e8;
+    font-size: 14px;
+    line-height: 1.45;
+}
+
 .back-link {
     display: block;
     text-align: center;

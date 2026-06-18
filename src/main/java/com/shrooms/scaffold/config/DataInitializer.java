@@ -54,9 +54,9 @@ public class DataInitializer implements CommandLineRunner {
             Scaffold facadeSteelScaffold = Scaffold.builder()
                     .name("Facade Steel Scaffold")
                     .description("""
-                            Facade scaffolding is used for both small and large renovation and construction projects. 
-                            It is a flexible scaffolding solution that can be adapted around different types of buildings 
-                            and construction sites. Suitable for multiple craftsmen working simultaneously, while providing 
+                            Facade scaffolding is used for both small and large renovation and construction projects.
+                            It is a flexible scaffolding solution that can be adapted around different types of buildings
+                            and construction sites. Suitable for multiple craftsmen working simultaneously, while providing
                             safe and stable access during renovation work.
                             """)
                     .height(4.00)
@@ -73,8 +73,8 @@ public class DataInitializer implements CommandLineRunner {
             Scaffold mobileAluminiumScaffold = Scaffold.builder()
                     .name("Mobile Aluminium Scaffold")
                     .description("""
-                            A 40m² mobile scaffold (or rolling scaffold) is a temporary, freestanding work platform mounted on lockable caster wheels. 
-                            It allows workers to easily move elevated platforms around a job site without dismantling the structure, making it ideal 
+                            A 40m² mobile scaffold (or rolling scaffold) is a temporary, freestanding work platform mounted on lockable caster wheels.
+                            It allows workers to easily move elevated platforms around a job site without dismantling the structure, making it ideal
                             for tasks that require frequent position changes, such as painting, plastering, and maintenance.
                             """)
                     .height(5.2)
@@ -137,5 +137,4 @@ public class DataInitializer implements CommandLineRunner {
         }
     }
 }
-
 
