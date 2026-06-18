@@ -5,6 +5,7 @@ import com.shrooms.scaffold.service.user.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,7 +46,24 @@ public class UserController {
             return modelAndView;
         }
 
-        userService.register(userRegisterRequest);
+        try {
+            userService.register(userRegisterRequest);
+        } catch (RuntimeException exception) {
+            if ("Username already exists".equals(exception.getMessage())) {
+                bindingResult.addError(new FieldError(
+                        "userRegisterRequest",
+                        "username",
+                        exception.getMessage()));
+            } else if ("Email already exists".equals(exception.getMessage())) {
+                bindingResult.addError(new FieldError(
+                        "userRegisterRequest",
+                        "email",
+                        exception.getMessage()));
+            } else {
+                throw exception;
+            }
+            return new ModelAndView("register");
+        }
 
         return new ModelAndView("redirect:/register/success");
     }

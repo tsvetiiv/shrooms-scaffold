@@ -118,20 +118,21 @@
                            name="estimatedPrice"
                            class="price-input"
                            step="0.01"
-                           min="0"
+                           min="0.01"
                            th:value="${customOrder.estimatedPrice}"
                            placeholder="Price">
 
                     <select name="requestStatus" class="status-select">
-                        <option th:each="status : ${T(com.shrooms.scaffold.model.entity.customOrder.RequestStatus).values()}"
-                                th:value="${status}"
-                                th:text="${status}"
-                                th:selected="${status == customOrder.requestStatus}">
-                        </option>
+                        <option value="APPROVED">APPROVED</option>
+                        <option value="REJECTED">REJECTED</option>
                     </select>
 
                     <button type="submit" class="status-update-btn">Update</button>
                 </form>
+                <small class="error-message"
+                       th:if="${priceError != null and priceErrorOrderId == customOrder.id}"
+                       th:text="${priceError}">
+                </small>
 
                 <span th:if="${customOrder.requestStatus.name() == 'APPROVED' or customOrder.requestStatus.name() == 'REJECTED'}"
                       class="final-status-label admin-custom-final-label">

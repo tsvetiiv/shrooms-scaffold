@@ -81,7 +81,15 @@ public class AdminController {
     @PutMapping("/custom-orders/{id}")
     public String updateCustomOrder(@PathVariable UUID id,
                                     @RequestParam RequestStatus requestStatus,
-                                    @RequestParam BigDecimal estimatedPrice) {
+                                    @RequestParam(required = false) BigDecimal estimatedPrice,
+                                    RedirectAttributes redirectAttributes) {
+        if (RequestStatus.APPROVED.equals(requestStatus)
+                && (estimatedPrice == null || estimatedPrice.compareTo(BigDecimal.ZERO) <= 0)) {
+            redirectAttributes.addFlashAttribute("priceErrorOrderId", id);
+            redirectAttributes.addFlashAttribute("priceError", "Estimated price is required before approving.");
+            return "redirect:/admin/custom-orders";
+        }
+
         customOrderService.updateCustomOrder(id, requestStatus, estimatedPrice);
         return "redirect:/admin/custom-orders";
     }

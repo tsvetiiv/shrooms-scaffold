@@ -23,10 +23,10 @@ public class CustomOrderRequest {
     @Positive(message = "Height must be greater than 0")
     private Double height;
     @NotNull(message = "Width is required")
-    @Positive(message = "Height must be greater than 0")
+    @Positive(message = "Width must be greater than 0")
     private Double width;
     @NotNull(message = "Length is required")
-    @Positive(message = "Height must be greater than 0")
+    @Positive(message = "Length must be greater than 0")
     private Double length;
     @NotBlank(message = "Delivery address is required")
     @Size(min = 5, max = 150, message = "Delivery address must be between 5 and 150 characters")

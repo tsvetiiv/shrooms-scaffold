@@ -54,12 +54,18 @@ public class ProfileController {
     }
 
     @PutMapping("/profile/edit")
-    public String editProfile(@Valid @ModelAttribute("userEditProfileDto") UserEditProfileDto userEditProfileDto,
-                              BindingResult bindingResult,
-                              HttpSession session) {
+    public ModelAndView editProfile(@Valid @ModelAttribute("userEditProfileDto") UserEditProfileDto userEditProfileDto,
+                                    BindingResult bindingResult,
+                                    HttpSession session) {
 
         if (bindingResult.hasErrors()) {
-            return "edit-profile";
+            UserDto currentUser = (UserDto) session.getAttribute("user");
+
+            ModelAndView modelAndView = new ModelAndView("edit-profile");
+            modelAndView.addObject("user", currentUser);
+            modelAndView.addObject("userEditProfileDto", userEditProfileDto);
+
+            return modelAndView;
         }
 
         UserDto currentUser = (UserDto) session.getAttribute("user");
@@ -67,6 +73,6 @@ public class ProfileController {
 
         session.setAttribute("user", updatedUser);
 
-        return "redirect:/users/profile";
+        return new ModelAndView("redirect:/users/profile");
     }
 }
