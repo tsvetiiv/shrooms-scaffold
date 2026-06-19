@@ -28,9 +28,6 @@ public class OrdersController {
 
         ModelAndView modelAndView = new ModelAndView("orders");
         modelAndView.addObject("orders", orderService.getOrdersByUserId(user.getId()));
-        modelAndView.addObject(
-                "orders",
-                orderService.getOrdersByUserId(user.getId()));
 
         modelAndView.addObject(
                 "customOrders",

@@ -13,6 +13,7 @@ import com.shrooms.scaffold.service.order.OrderService;
 import com.shrooms.scaffold.service.scaffold.ScaffoldService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,7 +87,7 @@ public class AdminController {
         if (RequestStatus.APPROVED.equals(requestStatus)
                 && (estimatedPrice == null || estimatedPrice.compareTo(BigDecimal.ZERO) <= 0)) {
             redirectAttributes.addFlashAttribute("priceErrorOrderId", id);
-            redirectAttributes.addFlashAttribute("priceError", "Estimated price is required before approving.");
+            redirectAttributes.addFlashAttribute("priceError", "Estimated price must be greater than 0 before approving.");
             return "redirect:/admin/custom-orders";
         }
 
@@ -110,8 +111,13 @@ public class AdminController {
     @PutMapping("/scaffolds/{id}")
     public String editScaffold(@PathVariable UUID id,
                                @Valid @ModelAttribute("scaffoldRequest") ScaffoldRequest scaffoldRequest,
-                               BindingResult bindingResult) {
+                               BindingResult bindingResult,
+                               Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("scaffoldId", id);
+            model.addAttribute("materialTypes", MaterialType.values());
+            model.addAttribute("scaffoldCategories", ScaffoldCategory.values());
+
             return "admin/edit-scaffold";
         }
 

@@ -116,13 +116,12 @@
 
                     <input type="number"
                            name="estimatedPrice"
-                           class="price-input"
+                           class="price-input custom-price-input"
                            step="0.01"
-                           min="0.01"
                            th:value="${customOrder.estimatedPrice}"
                            placeholder="Price">
 
-                    <select name="requestStatus" class="status-select">
+                    <select name="requestStatus" class="status-select custom-status-select">
                         <option value="APPROVED">APPROVED</option>
                         <option value="REJECTED">REJECTED</option>
                     </select>
@@ -145,6 +144,26 @@
 </main>
 
 <div th:insert="~{fragments/common/footer :: footer}"></div>
+
+<script>
+    document.querySelectorAll('.admin-custom-action-form').forEach((form) => {
+        const priceInput = form.querySelector('.custom-price-input');
+        const statusSelect = form.querySelector('.custom-status-select');
+
+        const togglePriceInput = () => {
+            const rejected = statusSelect.value === 'REJECTED';
+            priceInput.hidden = rejected;
+            priceInput.disabled = rejected;
+
+            if (rejected) {
+                priceInput.value = '';
+            }
+        };
+
+        statusSelect.addEventListener('change', togglePriceInput);
+        togglePriceInput();
+    });
+</script>
 
 </body>
 </html>

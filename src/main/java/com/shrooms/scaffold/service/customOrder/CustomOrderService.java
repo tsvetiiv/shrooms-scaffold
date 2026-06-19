@@ -88,7 +88,7 @@ public class CustomOrderService {
         }
 
         customOrder.setRequestStatus(requestStatus);
-        customOrder.setEstimatedPrice(estimatedPrice);
+        customOrder.setEstimatedPrice(RequestStatus.APPROVED.equals(requestStatus) ? estimatedPrice : null);
         customOrderRepository.save(customOrder);
     }
 }
