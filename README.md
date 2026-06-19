@@ -226,6 +226,9 @@ Scaffold offers include:
 - Availability
 
 If a scaffold already has existing orders, it is not deleted from the database. Instead, it is marked as unavailable.
+This preserves the order history for customers and administrators while preventing new orders for that scaffold.
+
+The application does not allow deleting a scaffold after its orders become final. Final orders are kept as historical records, and the system does not maintain scaffold stock quantities that could be recalculated after completed, cancelled, or rejected requests. Marking the scaffold as unavailable is therefore the safer business rule because it avoids losing past order data and avoids introducing inventory tracking that the application does not currently support.
 
 ## Business Rules
 
@@ -233,6 +236,7 @@ If a scaffold already has existing orders, it is not deleted from the database. 
 - Admin users cannot use the customer order flow.
 - Regular users cannot access admin pages.
 - Unavailable scaffolds cannot be ordered.
+- Scaffolds with existing orders are marked as unavailable instead of being permanently deleted.
 - Approved and cancelled rent or purchase orders are final.
 - Approved and rejected custom requests are final.
 - Custom requests require an estimated price before approval.
