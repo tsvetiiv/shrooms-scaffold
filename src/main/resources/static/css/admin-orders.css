@@ -14,9 +14,8 @@ body {
     flex: 1;
     padding: 60px 40px;
 
-    background:
-            linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.92)),
-            url('/images/facade.png') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.92)),
+    url('/images/facade.png') center/cover no-repeat;
 }
 
 .admin-orders-panel {
@@ -94,6 +93,7 @@ body {
     background: rgba(214, 31, 31, 0.55);
     border-radius: 999px;
 }
+
 .admin-orders-table {
     width: max-content;
     min-width: 100%;
@@ -141,6 +141,7 @@ body {
 
     overflow-wrap: break-word;
 }
+
 .admin-orders-table th:first-child,
 .admin-orders-table td:first-child,
 .admin-orders-table th:nth-child(2),
@@ -163,6 +164,7 @@ body {
 .admin-orders-table tbody tr:nth-child(even) {
     background: rgba(255, 255, 255, 0.015);
 }
+
 .admin-orders-table th:nth-child(1),
 .admin-orders-table td:nth-child(1) {
     width: 130px;
@@ -226,7 +228,7 @@ body {
     color: #ffffff;
 }
 
-.admin-orders-table tbody td:nth-child(4){
+.admin-orders-table tbody td:nth-child(4) {
     font-weight: 700;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -247,6 +249,7 @@ body {
 
     background: rgba(255, 255, 255, 0.02);
 }
+
 .status-form {
     display: flex;
     align-items: center;
@@ -254,6 +257,10 @@ body {
     gap: 8px;
 
     min-width: 210px;
+}
+
+.delete-order-form {
+    margin-top: 10px;
 }
 
 .status-select {
@@ -284,13 +291,37 @@ body {
     cursor: pointer;
     transition: background 0.2s ease;
 }
+
 .status-update-btn:hover {
     background: #b81818;
 }
+
+.delete-order-btn {
+    min-width: 78px;
+    padding: 9px 12px;
+
+    background: transparent;
+    border: 1px solid rgba(255, 119, 119, 0.75);
+    border-radius: 5px;
+
+    color: #ff7777;
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.delete-order-btn:hover {
+    background: rgba(214, 31, 31, 0.22);
+    color: #ffffff;
+}
+
 .status-select option {
     background: #111111;
     color: #ffffff;
 }
+
 .status-badge {
     display: inline-flex;
     align-items: center;
@@ -326,6 +357,7 @@ body {
     border: 1px solid rgba(214, 31, 31, 0.75);
     color: #ff7777;
 }
+
 .price-input {
     width: 95px;
     padding: 9px 10px;
@@ -342,6 +374,7 @@ body {
 .price-input::placeholder {
     color: #aaaaaa;
 }
+
 .final-status-label {
     display: inline-flex;
     align-items: center;
@@ -357,6 +390,28 @@ body {
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+.flash-message {
+    margin: 0 0 20px;
+    padding: 14px 16px;
+
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.flash-message.success {
+    background: rgba(46, 204, 113, 0.14);
+    border: 1px solid rgba(46, 204, 113, 0.55);
+    color: #69e89b;
+}
+
+.flash-message.warning {
+    background: rgba(255, 193, 7, 0.14);
+    border: 1px solid rgba(255, 193, 7, 0.55);
+    color: #ffd45a;
 }
 
 .admin-custom-final-label {
@@ -460,6 +515,7 @@ body {
 .admin-orders-table tbody tr.final-order:hover {
     background: rgba(120, 120, 120, 0.20) !important;
 }
+
 @media (max-width: 800px) {
     .admin-orders-page {
         padding: 40px 18px;

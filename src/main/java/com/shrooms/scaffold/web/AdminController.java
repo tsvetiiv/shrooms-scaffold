@@ -79,6 +79,18 @@ public class AdminController {
         return "redirect:/admin/orders";
     }
 
+    @DeleteMapping("/orders/{id}")
+    public String deleteFinalOrder(@PathVariable UUID id, RedirectAttributes redirectAttributes) {
+        try {
+            orderService.deleteFinalOrder(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Order deleted successfully.");
+        } catch (RuntimeException exception) {
+            redirectAttributes.addFlashAttribute("warningMessage", exception.getMessage());
+        }
+
+        return "redirect:/admin/orders";
+    }
+
     @PutMapping("/custom-orders/{id}")
     public String updateCustomOrder(@PathVariable UUID id,
                                     @RequestParam RequestStatus requestStatus,

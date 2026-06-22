@@ -20,6 +20,16 @@
 
         <div class="red-line"></div>
 
+        <div class="flash-message success"
+             th:if="${successMessage}"
+             th:text="${successMessage}">
+        </div>
+
+        <div class="flash-message warning"
+             th:if="${warningMessage}"
+             th:text="${warningMessage}">
+        </div>
+
         <div class="table-responsive">
             <table class="admin-orders-table admin-rent-purchase-table">
                 <thead>
@@ -64,7 +74,7 @@
                     <td th:text="${order.contactPhone}">phone</td>
                     <td th:text="${order.installationRequired ? 'Yes' : 'No'}">installation</td>
                     <td th:text="${order.totalPrice + ' €'}">price</td>
-                    <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">created</td>
+                    <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy')}">created</td>
                     <td>
                         <form th:if="${order.orderStatus.name() != 'APPROVED' and order.orderStatus.name() != 'CANCELLED'}"
                               th:action="@{/admin/orders/{id}/status(id=${order.id})}"
@@ -86,6 +96,15 @@
                               class="final-status-label">
                                      Final
                                     </span>
+
+                        <form th:if="${order.orderStatus.name() == 'APPROVED' or order.orderStatus.name() == 'CANCELLED'}"
+                              th:action="@{/admin/orders/{id}(id=${order.id})}"
+                              method="post"
+                              class="delete-order-form"
+                              onsubmit="return confirm('Are you sure you want to delete this final order?');">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="delete-order-btn">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>

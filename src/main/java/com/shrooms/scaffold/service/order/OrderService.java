@@ -129,4 +129,13 @@ public class OrderService {
         publisher.publishEvent(event);
     }
 
+    public void deleteFinalOrder(UUID orderId) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+
+        if (!order.getOrderStatus().equals(OrderStatus.APPROVED) && !order.getOrderStatus().equals(OrderStatus.CANCELLED)) {
+            throw new RuntimeException("Only final orders can be deleted.");
+        }
+
+        orderRepository.delete(order);
+    }
 }
