@@ -56,7 +56,7 @@
                     <td th:text="${order.contactPhone}">Phone</td>
                     <td th:text="${order.installationRequired ? 'Yes' : 'No'}">Installation</td>
                     <td th:text="${order.totalPrice + ' €'}">Price</td>
-                    <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy HH:mm')}">Created On</td>
+                    <td th:text="${#temporals.format(order.createdOn, 'dd.MM.yyyy')}">Created On</td>
                 </tr>
                 </tbody>
             </table>
@@ -158,7 +158,8 @@
 
                 <div class="detail-row">
                     <span>Created On</span>
-                    <strong th:text="${#temporals.format(customOrder.createdOn, 'dd.MM.yyyy HH:mm')}">Created On</strong>
+                    <strong th:text="${#temporals.format(customOrder.createdOn, 'dd.MM.yyyy')}">Created
+                        On</strong>
                 </div>
             </article>
         </div>
