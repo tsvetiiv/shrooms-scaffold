@@ -1,8 +1,11 @@
 # SHROOMS SCAFFOLD SOLUTIONS
 
-Shrooms Scaffold Solutions is a Spring Boot web application for managing scaffold rental, purchase, and custom scaffold requests.
+Shrooms Scaffold Solutions is a Spring Boot web application for managing scaffold rental, purchase, and custom scaffold
+requests.
 
-The application supports two main user roles: customers and administrators. Customers can browse scaffold offers, submit rent or purchase orders, request custom scaffold solutions, and track their order history. Administrators can manage scaffold offers, review submitted orders, approve or cancel requests, and maintain the order workflow.
+The application supports two main user roles: customers and administrators. Customers can browse scaffold offers, submit
+rent or purchase orders, request custom scaffold solutions, and track their order history. Administrators can manage
+scaffold offers, review submitted orders, approve or cancel requests, and maintain the order workflow.
 
 ## Features
 
@@ -24,7 +27,7 @@ The application supports two main user roles: customers and administrators. Cust
 - Admin scaffold create, edit, and delete functionality
 - Validation for forms and business rules
 - Email notification when an order status changes
-- Scheduled pending orders report
+- Scheduled pending orders report in the console
 - Cached scaffold catalog
 - Initial admin account and scaffold data seeding
 
@@ -91,7 +94,8 @@ Admins cannot:
 
 Users can create an account with username, first name, last name, email, password, and password confirmation.
 
-The registration form validates required fields, email format, password confirmation, duplicate usernames, and duplicate emails. Duplicate username or email errors are shown in the form instead of displaying an error page.
+The registration form validates required fields, email format, password confirmation, duplicate usernames, and duplicate
+emails. Duplicate username or email errors are shown in the form instead of displaying an error page.
 
 After login, users are redirected based on their role:
 
@@ -202,7 +206,8 @@ Only pending custom requests can be updated. Admins can change a pending custom 
 - `APPROVED`
 - `REJECTED`
 
-When approving a custom request, the admin must provide an estimated price. If the price is missing or invalid, the application shows a validation message instead of returning an error page.
+When approving a custom request, the admin must provide an estimated price. If the price is missing or invalid, the
+application shows a validation message instead of returning an error page.
 
 ### Scaffold Management
 
@@ -226,7 +231,8 @@ Scaffold offers include:
 - Availability
 
 If a scaffold already has existing orders, it is not deleted from the database. Instead, it is marked as unavailable.
-This preserves customer and admin order history while preventing new orders for that scaffold. The application does not track scaffold stock quantities, so availability is used instead of deleting historical order data.
+This preserves customer and admin order history while preventing new orders for that scaffold. The application does not
+track scaffold stock quantities, so availability is used instead of deleting historical order data.
 
 ## Business Rules
 
