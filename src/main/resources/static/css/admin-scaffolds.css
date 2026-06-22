@@ -14,9 +14,8 @@ body {
     flex: 1;
     padding: 60px 40px;
 
-    background:
-            linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.92)),
-            url('/images/facade.png') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.92)),
+    url('/images/facade.png') center/cover no-repeat;
 }
 
 .admin-scaffolds-panel {
@@ -166,6 +165,7 @@ body {
 .edit-scaffold-btn:hover {
     background: #b81818;
 }
+
 .scaffold-actions {
     display: flex;
     gap: 10px;
@@ -201,6 +201,7 @@ body {
 .delete-scaffold-btn:hover {
     background: #b81818;
 }
+
 .flash-message {
     margin-bottom: 24px;
     padding: 14px 18px;
@@ -222,6 +223,7 @@ body {
     border: 1px solid rgba(255, 193, 7, 0.65);
     color: #ffd45a;
 }
+
 @media (max-width: 800px) {
     .admin-scaffolds-page {
         padding: 40px 18px;

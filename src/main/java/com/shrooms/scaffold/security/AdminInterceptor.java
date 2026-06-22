@@ -27,7 +27,7 @@ public class AdminInterceptor implements HandlerInterceptor {
             response.sendRedirect("/login");
             return false;
         }
-        if (user.getRoleType() != RoleType.ADMIN){
+        if (user.getRoleType() != RoleType.ADMIN) {
             response.sendRedirect("/login");
             return false;
         }

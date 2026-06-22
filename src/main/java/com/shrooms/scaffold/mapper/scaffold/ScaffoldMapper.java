@@ -9,7 +9,7 @@ public class ScaffoldMapper {
 
     public static Scaffold toScaffoldEntity(ScaffoldRequest scaffoldRequest) {
 
-        if(scaffoldRequest == null) {
+        if (scaffoldRequest == null) {
             return null;
         }
 
@@ -29,7 +29,7 @@ public class ScaffoldMapper {
     }
 
     public static ScaffoldRequest toScaffoldRequest(Scaffold scaffold) {
-        if(scaffold == null) {
+        if (scaffold == null) {
             return null;
         }
 
@@ -48,7 +48,7 @@ public class ScaffoldMapper {
                 .build();
     }
 
-    public static void updateScaffoldFromRequest(Scaffold scaffold, ScaffoldRequest request){
+    public static void updateScaffoldFromRequest(Scaffold scaffold, ScaffoldRequest request) {
 
         if (scaffold == null || request == null) {
             return;

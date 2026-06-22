@@ -23,7 +23,7 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public ModelAndView getLoginPage(){
+    public ModelAndView getLoginPage() {
         UserLoginRequest userLoginRequest = UserLoginRequest.builder().build();
 
         ModelAndView modelAndView = new ModelAndView();
@@ -33,6 +33,7 @@ public class LoginController {
 
         return modelAndView;
     }
+
     @PostMapping("/login")
     public ModelAndView login(@Valid @ModelAttribute("userLoginData") UserLoginRequest userLoginRequest,
                               BindingResult bindingResult, HttpSession session) {
@@ -47,7 +48,7 @@ public class LoginController {
             if (user.getRoleType() == RoleType.ADMIN) {
                 return new ModelAndView("redirect:/admin");
             }
-            return  new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/");
 
 
         } catch (RuntimeException exception) {

@@ -2,17 +2,15 @@ package com.shrooms.scaffold.mapper.user;
 
 import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.model.dto.user.UserRegisterRequest;
-
 import com.shrooms.scaffold.model.entity.user.RoleType;
 import com.shrooms.scaffold.model.entity.user.User;
 import lombok.NoArgsConstructor;
 
 
-
 @NoArgsConstructor
 public class UserMapper {
 
-    public static User toUserEntity(UserRegisterRequest userRegisterRequest){
+    public static User toUserEntity(UserRegisterRequest userRegisterRequest) {
 
         if (userRegisterRequest == null) {
             return null;
@@ -43,7 +41,5 @@ public class UserMapper {
                 .roleType(user.getRoleType())
                 .orders(user.getOrders())
                 .build();
-
-
     }
 }

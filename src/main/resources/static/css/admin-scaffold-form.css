@@ -14,9 +14,8 @@ body {
     flex: 1;
     padding: 60px 40px;
 
-    background:
-            linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.92)),
-            url('/images/facade.png') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.92)),
+    url('/images/facade.png') center/cover no-repeat;
 }
 
 .admin-scaffold-form-card {

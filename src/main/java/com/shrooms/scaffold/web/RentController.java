@@ -75,5 +75,4 @@ public class RentController {
             return modelAndView;
         }
     }
-
 }

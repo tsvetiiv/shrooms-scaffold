@@ -21,9 +21,10 @@ public class EmailService {
         message.setSubject("Your Shrooms order status was updated");
         message.setText("""
                 Hello %s,
-
+                
                 Your order for %s is now %s.
-
+                
+                
                 Thank you,
                 Shrooms Scaffold Solutions
                 """.formatted(

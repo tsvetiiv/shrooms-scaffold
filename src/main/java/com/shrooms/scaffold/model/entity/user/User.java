@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.List;
 import java.util.UUID;
+
 @Builder
 @Getter
 @Setter
@@ -43,7 +44,4 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
-
-
-
 }

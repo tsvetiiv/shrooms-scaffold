@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 
     private UserService userService;
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -30,12 +31,13 @@ public class UserController {
 
         return modelAndView;
     }
+
     @PostMapping("/register")
     public ModelAndView register(
             @Valid @ModelAttribute("userRegisterRequest") UserRegisterRequest userRegisterRequest,
             BindingResult bindingResult) {
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return new ModelAndView("register");
         }
 

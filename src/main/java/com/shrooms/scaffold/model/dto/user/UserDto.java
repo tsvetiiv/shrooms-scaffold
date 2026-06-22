@@ -18,7 +18,6 @@ public class UserDto {
     private String lastName;
     private String profilePicture;
     private String email;
-
     private RoleType roleType;
     private List<Order> orders;
 

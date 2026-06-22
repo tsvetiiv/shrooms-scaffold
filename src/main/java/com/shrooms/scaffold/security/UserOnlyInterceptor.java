@@ -30,5 +30,4 @@ public class UserOnlyInterceptor implements HandlerInterceptor {
         }
         return true;
     }
-
 }

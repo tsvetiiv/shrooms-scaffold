@@ -1,4 +1,5 @@
 package com.shrooms.scaffold.web;
+
 import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.service.customOrder.CustomOrderService;
 import com.shrooms.scaffold.service.order.OrderService;
@@ -14,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class OrdersController {
 
     private final OrderService orderService;
-    private final CustomOrderService  customOrderService;
+    private final CustomOrderService customOrderService;
 
     public OrdersController(OrderService orderService, CustomOrderService customOrderService) {
         this.orderService = orderService;
@@ -34,5 +35,4 @@ public class OrdersController {
                 customOrderService.getOrdersByUserId(user.getId()));
         return modelAndView;
     }
-
 }

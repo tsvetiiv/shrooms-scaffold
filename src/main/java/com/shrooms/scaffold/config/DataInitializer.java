@@ -28,7 +28,7 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args)  {
+    public void run(String... args) {
         seedAdmin();
         seedScaffolds();
     }
@@ -109,30 +109,29 @@ public class DataInitializer implements CommandLineRunner {
                     .build();
 
 
-
-                Scaffold roomScaffold = Scaffold.builder()
-                        .name("Room Aluminium Scaffold")
-                        .description("""
-                                               Professional indoor room scaffold suitable for painting,
-                                               decorating, electrical installations and maintenance work.
-                                               Compact, mobile and easy to assemble, offering safe access
-                                               to elevated indoor work areas while fitting through standard
-                                               doorways and narrow spaces.
-                                """)
-                        .height(3.00)
-                        .length(1.90)
-                        .width(0.75)
-                        .materialType(MaterialType.ALUMINIUM)
-                        .scaffoldCategory(ScaffoldCategory.ROOM)
-                        .priceForRent(new BigDecimal("90.00"))
-                        .priceForSale(new BigDecimal("400.00"))
-                        .imageUrl("/images/roomScaffold.png")
-                        .available(true)
-                        .build();
-                scaffoldRepository.save(facadeSteelScaffold);
-                scaffoldRepository.save(mobileAluminiumScaffold);
-                scaffoldRepository.save(facadeAluminiumScaffold);
-                scaffoldRepository.save(roomScaffold);
+            Scaffold roomScaffold = Scaffold.builder()
+                    .name("Room Aluminium Scaffold")
+                    .description("""
+                                           Professional indoor room scaffold suitable for painting,
+                                           decorating, electrical installations and maintenance work.
+                                           Compact, mobile and easy to assemble, offering safe access
+                                           to elevated indoor work areas while fitting through standard
+                                           doorways and narrow spaces.
+                            """)
+                    .height(3.00)
+                    .length(1.90)
+                    .width(0.75)
+                    .materialType(MaterialType.ALUMINIUM)
+                    .scaffoldCategory(ScaffoldCategory.ROOM)
+                    .priceForRent(new BigDecimal("90.00"))
+                    .priceForSale(new BigDecimal("400.00"))
+                    .imageUrl("/images/roomScaffold.png")
+                    .available(true)
+                    .build();
+            scaffoldRepository.save(facadeSteelScaffold);
+            scaffoldRepository.save(mobileAluminiumScaffold);
+            scaffoldRepository.save(facadeAluminiumScaffold);
+            scaffoldRepository.save(roomScaffold);
 
         }
     }

@@ -46,6 +46,4 @@ public class Scaffold {
     @Column(name = "scaffold_category",  nullable = false)
     @Enumerated(EnumType.STRING)
     private ScaffoldCategory scaffoldCategory;
-
-
 }

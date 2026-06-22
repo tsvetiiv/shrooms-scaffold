@@ -22,7 +22,7 @@ public class PendingOrdersReportService {
     }
 
     @Scheduled(fixedRate = 3600000)
-    public void countPendingOrders(){
+    public void countPendingOrders() {
         int pendingOrders = orderRepository.countAllByOrderStatus(OrderStatus.PENDING);
         int pendingCustomOrders = customOrderRepository.countAllByRequestStatus(RequestStatus.PENDING);
 

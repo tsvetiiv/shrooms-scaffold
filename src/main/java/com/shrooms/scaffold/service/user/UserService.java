@@ -21,7 +21,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -50,7 +50,7 @@ public class UserService {
         Optional<User> optionalUser =
                 userRepository.findByUsername(userLoginRequest.getUsername());
 
-        if (optionalUser.isEmpty()){
+        if (optionalUser.isEmpty()) {
             throw new RuntimeException("Username not found");
         }
         User user = optionalUser.get();
@@ -78,5 +78,4 @@ public class UserService {
 
         return UserMapper.toUserDto(savedUser);
     }
-
 }

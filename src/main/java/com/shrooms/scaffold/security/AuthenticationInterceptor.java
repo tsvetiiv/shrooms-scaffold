@@ -13,7 +13,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
-                             Object handler) throws Exception{
+                             Object handler) throws Exception {
 
         HttpSession session = request.getSession(false);
 
@@ -29,5 +29,4 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         }
         return true;
     }
-
 }

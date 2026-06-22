@@ -73,5 +73,4 @@ public class ScaffoldService {
         scaffoldRepository.deleteById(id);
         return true;
     }
-
 }
