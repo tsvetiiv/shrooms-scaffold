@@ -107,6 +107,17 @@ public class AdminController {
         return "redirect:/admin/custom-orders";
     }
 
+    @DeleteMapping("/custom-orders/{id}")
+    public String deleteFinalCustomOrder(@PathVariable UUID id, RedirectAttributes redirectAttributes) {
+        try {
+            customOrderService.deleteFinalCustomOrder(id);
+            redirectAttributes.addFlashAttribute("successMessage", "Custom order deleted successfully.");
+        } catch (RuntimeException exception) {
+            redirectAttributes.addFlashAttribute("warningMessage", exception.getMessage());
+        }
+        return "redirect:/admin/custom-orders";
+    }
+
     @GetMapping("/scaffolds/{id}/edit")
     public ModelAndView getEditScaffold(@PathVariable UUID id) {
         ScaffoldRequest scaffoldRequest = scaffoldService.getScaffoldForEdit(id);

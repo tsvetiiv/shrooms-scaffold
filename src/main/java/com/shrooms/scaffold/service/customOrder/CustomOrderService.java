@@ -91,4 +91,15 @@ public class CustomOrderService {
         customOrder.setEstimatedPrice(RequestStatus.APPROVED.equals(requestStatus) ? estimatedPrice : null);
         customOrderRepository.save(customOrder);
     }
+
+    public void deleteFinalCustomOrder(UUID orderId) {
+        CustomOrder finalCustomOrder = customOrderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        if (!finalCustomOrder.getRequestStatus().equals(RequestStatus.APPROVED) && !finalCustomOrder.getRequestStatus().equals(RequestStatus.REJECTED)) {
+            throw new RuntimeException("Only final custom orders can be deleted.");
+        }
+
+        customOrderRepository.delete(finalCustomOrder);
+    }
 }

@@ -20,6 +20,16 @@
 
         <div class="red-line"></div>
 
+        <div class="flash-message success"
+             th:if="${successMessage}"
+             th:text="${successMessage}">
+        </div>
+
+        <div class="flash-message warning"
+             th:if="${warningMessage}"
+             th:text="${warningMessage}">
+        </div>
+
         <p class="empty-admin-message"
            th:if="${#lists.isEmpty(customOrders)}">
             No custom requests yet.
@@ -137,6 +147,14 @@
                       class="final-status-label admin-custom-final-label">
                      Final
                 </span>
+                <form th:if="${customOrder.requestStatus.name() == 'APPROVED' or customOrder.requestStatus.name() == 'REJECTED'}"
+                      th:action="@{/admin/custom-orders/{id}(id=${customOrder.id})}"
+                      method="post"
+                      class="delete-order-form"
+                      onsubmit="return confirm('Are you sure you want to delete this final order?');">
+                    <input type="hidden" name="_method" value="delete">
+                    <button type="submit" class="delete-order-btn">Delete</button>
+                </form>
             </article>
         </div>
 
