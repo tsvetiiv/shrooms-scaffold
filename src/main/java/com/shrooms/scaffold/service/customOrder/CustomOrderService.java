@@ -1,5 +1,6 @@
 package com.shrooms.scaffold.service.customOrder;
 
+import com.shrooms.scaffold.event.CustomOrderStatusChangedEvent;
 import com.shrooms.scaffold.model.dto.order.CustomOrderRequest;
 import com.shrooms.scaffold.model.dto.user.UserDto;
 import com.shrooms.scaffold.model.entity.customOrder.CustomOrder;
@@ -8,6 +9,7 @@ import com.shrooms.scaffold.model.entity.order.OrderType;
 import com.shrooms.scaffold.model.entity.user.User;
 import com.shrooms.scaffold.repository.customRequest.CustomOrderRepository;
 import com.shrooms.scaffold.repository.user.UserRepository;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -21,10 +23,14 @@ public class CustomOrderService {
 
     private final UserRepository userRepository;
     private final CustomOrderRepository customOrderRepository;
+    private final ApplicationEventPublisher publisher;
 
-    public CustomOrderService(UserRepository userRepository, CustomOrderRepository customOrderRepository) {
+    public CustomOrderService(UserRepository userRepository,
+                              CustomOrderRepository customOrderRepository,
+                              ApplicationEventPublisher publisher) {
         this.userRepository = userRepository;
         this.customOrderRepository = customOrderRepository;
+        this.publisher = publisher;
     }
 
     public List<CustomOrder> getOrdersByUserId(UUID userId) {
@@ -90,6 +96,14 @@ public class CustomOrderService {
         customOrder.setRequestStatus(requestStatus);
         customOrder.setEstimatedPrice(RequestStatus.APPROVED.equals(requestStatus) ? estimatedPrice : null);
         customOrderRepository.save(customOrder);
+
+        CustomOrderStatusChangedEvent event = new CustomOrderStatusChangedEvent(
+                customOrder.getUser().getEmail(),
+                customOrder.getUser().getFirstName(),
+                customOrder.getProjectName(),
+                customOrder.getRequestStatus()
+        );
+        publisher.publishEvent(event);
     }
 
     public void deleteFinalCustomOrder(UUID orderId) {
